@@ -36,27 +36,27 @@ export default function SellCarPage() {
         <div className="absolute inset-0">
           <div className="container-responsive h-full flex items-center py-6 sm:py-10">
             <div className="max-w-xl md:max-w-2xl lg:max-w-3xl px-4 sm:px-6 py-3 sm:py-4 text-white drop-shadow-md">
-              <p className="text-brand-yellow font-semibold text-xs sm:text-sm mb-2">แลกเทิร์น • รับซื้อทุกรุ่น ทุกยี่ห้อ</p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight drop-shadow-lg">
+              <p className="text-brand-yellow font-semibold text-xs sm:text-sm md:text-base mb-1 sm:mb-2">แลกเทิร์น • รับซื้อทุกรุ่น ทุกยี่ห้อ</p>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-lg">
                 ขายรถยนต์มือสอง
                 <br />
                 <span className="text-brand-yellow">ประเมินราคายุติธรรม</span>
               </h1>
-              <p className="mt-3 sm:mt-4 text-white/90 max-w-2xl text-sm sm:text-base md:text-lg">
+              <p className="mt-2 sm:mt-3 text-white/90 max-w-2xl text-sm sm:text-base md:text-lg lg:text-xl">
                 น้ำเปล่ารถสวย รับซื้อรถมือสองทุกยี่ห้อ ประเมินราคาฟรี แลกเทิร์นรถยนต์
                 ให้ราคายุติธรรม จ่ายเงินสดทันที ดำเนินการเอกสารให้ครบถ้วน
               </p>
-              <div className="mt-5 sm:mt-6 flex flex-wrap gap-3">
+              <div className="mt-3 sm:mt-4 flex flex-wrap gap-2 sm:gap-3">
                 <a
                   href="https://line.me/R/ti/p/@931prrnt"
                   target="_blank"
-                  className="btn bg-green-500 text-white font-bold px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base hover:bg-green-600"
+                  className="btn bg-green-500 text-white font-bold px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 lg:py-2.5 text-xs sm:text-sm md:text-base lg:text-lg hover:bg-green-600"
                 >
                   <MessageCircle size={20} /> ติดต่อทาง LINE
                 </a>
                 <a
                   href="tel:0947251267"
-                  className="btn bg-white text-brand-dark font-bold px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base hover:bg-brand-yellow"
+                  className="btn bg-white text-brand-dark font-bold px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 lg:py-2.5 text-xs sm:text-sm md:text-base lg:text-lg hover:bg-brand-yellow"
                 >
                   <Phone size={20} /> โทร 094-725-1267
                 </a>
