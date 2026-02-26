@@ -50,15 +50,15 @@ export default function SellCarPage() {
                 <a
                   href="https://line.me/R/ti/p/@931prrnt"
                   target="_blank"
-                  className="btn bg-green-500 text-white font-bold px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 lg:py-2.5 text-xs sm:text-sm md:text-base lg:text-lg hover:bg-green-600"
+                  className="btn bg-green-500 text-white font-bold px-2.5 sm:px-4 md:px-5 lg:px-6 py-1 sm:py-2 lg:py-2.5 text-[11px] sm:text-sm md:text-base lg:text-lg hover:bg-green-600"
                 >
-                  <MessageCircle size={20} /> ติดต่อทาง LINE
+                  <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" /> ติดต่อทาง LINE
                 </a>
                 <a
                   href="tel:0947251267"
-                  className="btn bg-white text-brand-dark font-bold px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 lg:py-2.5 text-xs sm:text-sm md:text-base lg:text-lg hover:bg-brand-yellow"
+                  className="btn bg-white text-brand-dark font-bold px-2.5 sm:px-4 md:px-5 lg:px-6 py-1 sm:py-2 lg:py-2.5 text-[11px] sm:text-sm md:text-base lg:text-lg hover:bg-brand-yellow"
                 >
-                  <Phone size={20} /> โทร 094-725-1267
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5" /> โทร 094-725-1267
                 </a>
               </div>
             </div>
