@@ -64,20 +64,21 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
             className="object-cover"
           />
-        </div>
-      </div>
 
-      {/* Header */}
-      <div className="w-full bg-gradient-to-r from-brand-dark to-brand-blue text-white">
-        <div className="container-responsive py-10 sm:py-12">
-          <h1 className="text-2xl sm:text-3xl font-black">รถสวยพร้อมขาย</h1>
-          <p className="mt-1 sm:mt-2 text-white/80 text-sm">ค้นหารถยนต์มือสองคุณภาพดี ตรวจสภาพครบถ้วน ฟรีดาวน์</p>
-          <p className="mt-1 text-brand-yellow font-semibold text-sm sm:text-base">
-            ทั้งหมด {cars.length} คัน (หน้า {currentPage}/{totalPages || 1})
-          </p>
-          <div className="mt-3 sm:mt-4 flex gap-2 sm:gap-3 flex-wrap">
-            <Link href="/contact" className="btn bg-brand-yellow text-brand-dark font-bold px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm">นัดดูรถ / ติดต่อ</Link>
-            <Link href="/sell-car" className="btn bg-white/10 text-white border border-white/20 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm hover:bg-white/20">ฝากขายได้ราคาดี</Link>
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/80 to-brand-blue/60 text-white">
+            <div className="container-responsive h-full flex items-center py-8 sm:py-10">
+              <div>
+                <h1 className="text-2xl sm:text-3xl font-black">รถสวยพร้อมขาย</h1>
+                <p className="mt-1 sm:mt-2 text-white/90 text-sm">ค้นหารถยนต์มือสองคุณภาพดี ตรวจสภาพครบถ้วน ฟรีดาวน์</p>
+                <p className="mt-1 text-brand-yellow font-semibold text-sm sm:text-base">
+                  ทั้งหมด {cars.length} คัน (หน้า {currentPage}/{totalPages || 1})
+                </p>
+                <div className="mt-3 sm:mt-4 flex gap-2 sm:gap-3 flex-wrap">
+                  <Link href="/contact" className="btn bg-brand-yellow text-brand-dark font-bold px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm">นัดดูรถ / ติดต่อ</Link>
+                  <Link href="/sell-car" className="btn bg-white/10 text-white border border-white/20 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm hover:bg-white/20">ฝากขายได้ราคาดี</Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
