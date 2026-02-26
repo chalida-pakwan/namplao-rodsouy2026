@@ -58,16 +58,17 @@ export default function PromotionPage() {
           sizes="100vw"
           className="w-full h-auto block"
         />
-      </section>
 
-      {/* Hero */}
-      <section className="w-full bg-gradient-to-r from-brand-yellow to-yellow-400">
-        <div className="container-responsive py-10 sm:py-14 text-center">
-          <p className="text-brand-dark font-semibold text-sm mb-2">ข้อเสนอพิเศษ</p>
-          <h1 className="text-4xl md:text-5xl font-black text-brand-dark">โปรโมชั่นพิเศษ</h1>
-          <p className="mt-3 text-brand-dark/70 max-w-xl mx-auto">
-            สิทธิพิเศษสำหรับลูกค้าน้ำเปล่ารถสวย ฟรีดาวน์ รับประกัน จัดส่งฟรี ทุกคัน
-          </p>
+        <div className="absolute inset-0">
+          <div className="container-responsive h-full flex items-center py-6 sm:py-10">
+            <div className="max-w-xl md:max-w-2xl lg:max-w-3xl px-4 sm:px-6 py-3 sm:py-4 text-white drop-shadow-md">
+              <p className="text-brand-yellow font-semibold text-xs sm:text-sm md:text-base mb-1 sm:mb-2">ข้อเสนอพิเศษ</p>
+              <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-lg">โปรโมชั่นพิเศษ</h1>
+              <p className="mt-2 sm:mt-3 text-white/90 max-w-2xl text-xs sm:text-base md:text-lg lg:text-xl">
+                สิทธิพิเศษสำหรับลูกค้าน้ำเปล่ารถสวย ฟรีดาวน์ รับประกัน จัดส่งฟรี ทุกคัน
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
