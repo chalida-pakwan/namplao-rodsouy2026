@@ -37,12 +37,12 @@ export default function SellCarPage() {
           <div className="container-responsive h-full flex items-center py-6 sm:py-10">
             <div className="max-w-xl md:max-w-2xl lg:max-w-3xl px-4 sm:px-6 py-3 sm:py-4 text-white drop-shadow-md">
               <p className="text-brand-yellow font-semibold text-xs sm:text-sm md:text-base mb-1 sm:mb-2">แลกเทิร์น • รับซื้อทุกรุ่น ทุกยี่ห้อ</p>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-lg">
+              <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-lg">
                 ขายรถยนต์มือสอง
                 <br />
                 <span className="text-brand-yellow">ประเมินราคายุติธรรม</span>
               </h1>
-              <p className="mt-2 sm:mt-3 text-white/90 max-w-2xl text-sm sm:text-base md:text-lg lg:text-xl">
+              <p className="mt-2 sm:mt-3 text-white/90 max-w-2xl text-xs sm:text-base md:text-lg lg:text-xl">
                 น้ำเปล่ารถสวย รับซื้อรถมือสองทุกยี่ห้อ ประเมินราคาฟรี แลกเทิร์นรถยนต์
                 ให้ราคายุติธรรม จ่ายเงินสดทันที ดำเนินการเอกสารให้ครบถ้วน
               </p>
