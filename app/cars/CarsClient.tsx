@@ -53,6 +53,20 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
 
   return (
     <div className="mt-0">
+      {/* Banner */}
+      <div className="container-responsive mt-0">
+        <div className="relative w-full h-[140px] sm:h-[220px] md:h-[280px] overflow-hidden rounded-2xl">
+          <Image
+            src="/images/bandnerallcar.webp"
+            alt="แบนเนอร์รถสวยพร้อมขาย"
+            fill
+            priority
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
+            className="object-cover"
+          />
+        </div>
+      </div>
+
       {/* Header */}
       <div className="w-full bg-gradient-to-r from-brand-dark to-brand-blue text-white">
         <div className="container-responsive py-10 sm:py-12">
@@ -65,20 +79,6 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
             <Link href="/contact" className="btn bg-brand-yellow text-brand-dark font-bold px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm">นัดดูรถ / ติดต่อ</Link>
             <Link href="/sell-car" className="btn bg-white/10 text-white border border-white/20 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm hover:bg-white/20">ฝากขายได้ราคาดี</Link>
           </div>
-        </div>
-      </div>
-
-      {/* Banner */}
-      <div className="container-responsive mt-4 sm:mt-6">
-        <div className="relative w-full h-[140px] sm:h-[220px] md:h-[280px] overflow-hidden rounded-2xl">
-          <Image
-            src="/images/bandnerallcar.webp"
-            alt="แบนเนอร์รถสวยพร้อมขาย"
-            fill
-            priority
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
-            className="object-cover"
-          />
         </div>
       </div>
 
