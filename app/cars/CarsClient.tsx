@@ -54,19 +54,19 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
   return (
     <div className="mt-0">
       {/* Banner */}
-      <div className="container-responsive mt-0">
-        <div className="relative w-full aspect-[1920/650] overflow-hidden rounded-2xl">
+      <div className="w-full">
+        <div className="relative w-full h-[100svh] min-h-[360px] overflow-hidden">
           <Image
             src="/images/bandnerallcar.webp"
             alt="แบนเนอร์รถสวยพร้อมขาย"
             fill
             priority
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
+            sizes="100vw"
             className="object-contain"
           />
 
           <div className="absolute inset-0">
-            <div className="container-responsive h-full flex items-center py-6 sm:py-8">
+            <div className="container-responsive h-full flex items-center py-6 sm:py-10">
               <div className="max-w-xl bg-white/75 backdrop-blur-sm rounded-2xl p-4 sm:p-6">
                 <h1 className="text-2xl sm:text-3xl font-black text-brand-dark">รถสวยพร้อมขาย</h1>
                 <p className="mt-1 sm:mt-2 text-slate-700 text-sm">ค้นหารถยนต์มือสองคุณภาพดี ตรวจสภาพครบถ้วน ฟรีดาวน์</p>
