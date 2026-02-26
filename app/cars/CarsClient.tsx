@@ -55,7 +55,7 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
     <div className="mt-0">
       {/* Banner */}
       <div className="w-full">
-        <div className="relative w-full h-[100svh] min-h-[360px] overflow-hidden">
+        <div className="relative w-full h-[100svh] min-h-[360px] overflow-hidden bg-brand-dark">
           <Image
             src="/images/bandnerallcar.webp"
             alt="แบนเนอร์รถสวยพร้อมขาย"
