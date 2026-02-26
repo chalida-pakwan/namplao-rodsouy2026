@@ -61,10 +61,10 @@ export default function PromotionPage() {
 
         <div className="absolute inset-0">
           <div className="container-responsive h-full flex items-center justify-center py-6 sm:py-10">
-            <div className="max-w-xl md:max-w-2xl lg:max-w-3xl px-4 sm:px-6 py-3 sm:py-4 text-white text-center drop-shadow-md mx-auto">
-              <p className="text-brand-yellow font-semibold text-xs sm:text-sm md:text-base mb-1 sm:mb-2">ข้อเสนอพิเศษ</p>
-              <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-lg">โปรโมชั่นพิเศษ</h1>
-              <p className="mt-2 sm:mt-3 text-white/90 max-w-2xl mx-auto text-xs sm:text-base md:text-lg lg:text-xl">
+            <div className="max-w-xl md:max-w-2xl lg:max-w-3xl px-4 sm:px-6 py-3 sm:py-4 text-white text-center drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] mx-auto">
+              <p className="text-yellow-400 font-bold text-xs sm:text-sm md:text-base mb-1 sm:mb-2 drop-shadow-md">ข้อเสนอพิเศษ</p>
+              <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">โปรโมชั่นพิเศษ</h1>
+              <p className="mt-2 sm:mt-3 text-white font-medium max-w-2xl mx-auto text-xs sm:text-base md:text-lg lg:text-xl drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
                 สิทธิพิเศษสำหรับลูกค้าน้ำเปล่ารถสวย ฟรีดาวน์ รับประกัน จัดส่งฟรี ทุกคัน
               </p>
             </div>
