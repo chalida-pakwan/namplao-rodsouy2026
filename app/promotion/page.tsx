@@ -61,10 +61,10 @@ export default function PromotionPage() {
 
         <div className="absolute inset-0">
           <div className="container-responsive h-full flex items-center justify-center py-6 sm:py-10">
-            <div className="max-w-xl md:max-w-2xl lg:max-w-3xl px-4 sm:px-6 py-3 sm:py-4 text-white text-center drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] mx-auto">
-              <p className="text-yellow-400 font-bold text-xs sm:text-sm md:text-base mb-1 sm:mb-2 drop-shadow-md">ข้อเสนอพิเศษ</p>
-              <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">โปรโมชั่นพิเศษ</h1>
-              <p className="mt-2 sm:mt-3 text-white font-medium max-w-2xl mx-auto text-xs sm:text-base md:text-lg lg:text-xl drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+            <div className="max-w-xl md:max-w-2xl lg:max-w-3xl px-4 sm:px-6 py-3 sm:py-4 text-center mx-auto">
+              <p className="text-brand-blue font-bold text-sm sm:text-base md:text-lg mb-1 sm:mb-2 drop-shadow-sm bg-white/80 px-3 py-1 rounded-full inline-block backdrop-blur-sm">ข้อเสนอพิเศษ</p>
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-brand-blue drop-shadow-sm mt-2">โปรโมชั่นพิเศษ</h1>
+              <p className="mt-3 sm:mt-4 text-brand-dark font-bold max-w-2xl mx-auto text-sm sm:text-lg md:text-xl lg:text-2xl drop-shadow-sm bg-white/60 p-2 rounded-lg backdrop-blur-sm">
                 สิทธิพิเศษสำหรับลูกค้าน้ำเปล่ารถสวย ฟรีดาวน์ รับประกัน จัดส่งฟรี ทุกคัน
               </p>
             </div>
