@@ -54,34 +54,33 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
   return (
     <div className="mt-0">
       {/* Banner */}
-      <div className="w-full">
-        <div className="relative w-full h-[100svh] min-h-[360px] overflow-hidden bg-brand-dark">
-          <Image
-            src="/images/bandnerallcar.webp"
-            alt="แบนเนอร์รถสวยพร้อมขาย"
-            fill
-            priority
-            sizes="100vw"
-            className="object-contain"
-          />
+      <section className="relative w-full">
+        <Image
+          src="/images/bandnerallcar.webp"
+          alt="แบนเนอร์รถสวยพร้อมขาย"
+          width={1920}
+          height={650}
+          priority
+          sizes="100vw"
+          className="w-full h-auto block"
+        />
 
-          <div className="absolute inset-0">
-            <div className="container-responsive h-full flex items-center py-6 sm:py-10">
-              <div className="max-w-xl bg-white/75 backdrop-blur-sm rounded-2xl p-4 sm:p-6">
-                <h1 className="text-2xl sm:text-3xl font-black text-brand-dark">รถสวยพร้อมขาย</h1>
-                <p className="mt-1 sm:mt-2 text-slate-700 text-sm">ค้นหารถยนต์มือสองคุณภาพดี ตรวจสภาพครบถ้วน ฟรีดาวน์</p>
-                <p className="mt-1 text-brand-blue font-semibold text-sm sm:text-base">
-                  ทั้งหมด {cars.length} คัน (หน้า {currentPage}/{totalPages || 1})
-                </p>
-                <div className="mt-3 sm:mt-4 flex gap-2 sm:gap-3 flex-wrap">
-                  <Link href="/contact" className="btn bg-brand-yellow text-brand-dark font-bold px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm">นัดดูรถ / ติดต่อ</Link>
-                  <Link href="/sell-car" className="btn bg-white text-brand-dark border border-slate-200 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm hover:bg-slate-50">ฝากขายได้ราคาดี</Link>
-                </div>
+        <div className="absolute inset-0">
+          <div className="container-responsive h-full flex items-center py-6 sm:py-10">
+            <div className="max-w-xl bg-white/75 backdrop-blur-sm rounded-2xl p-4 sm:p-6">
+              <h1 className="text-2xl sm:text-3xl font-black text-brand-dark">รถสวยพร้อมขาย</h1>
+              <p className="mt-1 sm:mt-2 text-slate-700 text-sm">ค้นหารถยนต์มือสองคุณภาพดี ตรวจสภาพครบถ้วน ฟรีดาวน์</p>
+              <p className="mt-1 text-brand-blue font-semibold text-sm sm:text-base">
+                ทั้งหมด {cars.length} คัน (หน้า {currentPage}/{totalPages || 1})
+              </p>
+              <div className="mt-3 sm:mt-4 flex gap-2 sm:gap-3 flex-wrap">
+                <Link href="/contact" className="btn bg-brand-yellow text-brand-dark font-bold px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm">นัดดูรถ / ติดต่อ</Link>
+                <Link href="/sell-car" className="btn bg-white text-brand-dark border border-slate-200 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm hover:bg-slate-50">ฝากขายได้ราคาดี</Link>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Filters */}
       <div className="container-responsive mt-4 sm:mt-6">
