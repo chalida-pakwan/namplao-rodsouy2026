@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Phone, MessageCircle, CheckCircle, Car, ClipboardList, FileText } from 'lucide-react';
 import SellCarForm from '@/components/SellCarForm';
@@ -20,6 +21,19 @@ const steps = [
 export default function SellCarPage() {
   return (
     <div className="mt-0">
+      {/* Banner Image */}
+      <section className="relative w-full">
+        <Image
+          src="/images/sellcar.webp"
+          alt="ฝากขายรถกับน้ำเปล่ารถสวย"
+          width={1920}
+          height={650}
+          priority
+          sizes="100vw"
+          className="w-full h-auto block"
+        />
+      </section>
+
       {/* Hero */}
       <section className="-mx-4 relative bg-gradient-to-br from-brand-dark to-brand-blue text-white py-16 px-4">
         <div className="container-responsive">
