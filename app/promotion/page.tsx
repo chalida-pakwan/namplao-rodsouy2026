@@ -65,7 +65,7 @@ export default function PromotionPage() {
               <p className="text-brand-blue font-bold text-sm sm:text-base md:text-lg mb-1 sm:mb-2 drop-shadow-sm bg-white/80 px-3 py-1 rounded-full inline-block backdrop-blur-sm">ข้อเสนอพิเศษ</p>
               <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-brand-blue drop-shadow-sm mt-2">โปรโมชั่นพิเศษ</h1>
               <p className="mt-3 sm:mt-4 text-brand-dark font-bold max-w-2xl mx-auto text-sm sm:text-lg md:text-xl lg:text-2xl drop-shadow-sm bg-white/60 p-2 rounded-lg backdrop-blur-sm">
-                สิทธิพิเศษสำหรับลูกค้าน้ำเปล่ารถสวย ฟรีดาวน์ รับประกัน จัดส่งฟรี ทุกคัน
+                สิทธิพิเศษสำหรับลูกค้าน้ำเปล่ารถสวย<br />ฟรีดาวน์ รับประกัน จัดส่งฟรี ทุกคัน
               </p>
             </div>
           </div>
