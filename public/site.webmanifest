@@ -1,0 +1,9 @@
+{
+  "name": "น้ำเปล่ารถสวย",
+  "short_name": "NamplaCars",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0E4B9A",
+  "icons": []
+}

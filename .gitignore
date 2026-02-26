@@ -1,0 +1,14 @@
+node_modules
+
+# OS / Editor
+.DS_Store
+.vscode
+
+# Next.js
+.next
+out
+
+# Env (secrets)
+.env
+.env.*
+!.env.example
