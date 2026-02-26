@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { MessageCircle, Phone, Flame, Shield, Truck, CreditCard } from 'lucide-react';
 import { buildMetadata } from '@/lib/seo';
@@ -46,6 +47,19 @@ const promos = [
 export default function PromotionPage() {
   return (
     <div className="mt-0">
+      {/* Banner Image */}
+      <section className="relative w-full">
+        <Image
+          src="/images/promotion.webp"
+          alt="โปรโมชั่นน้ำเปล่ารถสวย"
+          width={1920}
+          height={650}
+          priority
+          sizes="100vw"
+          className="w-full h-auto block"
+        />
+      </section>
+
       {/* Hero */}
       <section className="w-full bg-gradient-to-r from-brand-yellow to-yellow-400">
         <div className="container-responsive py-10 sm:py-14 text-center">
