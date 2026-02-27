@@ -56,7 +56,7 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
       {/* Banner */}
       <section className="relative w-full">
         <Image
-          src="/images/bandnerallcar.webp"
+          src="/images/allcar.webp"
           alt="แบนเนอร์รถสวยพร้อมขาย"
           width={1920}
           height={650}
