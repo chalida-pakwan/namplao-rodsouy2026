@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { MessageCircle, Phone, Car, Shield, Wallet, Truck, FileText, Award } from 'lucide-react';
 import { buildMetadata } from '@/lib/seo';
 
@@ -41,12 +42,28 @@ export default function AboutPage() {
   return (
     <div className="mt-0">
       {/* Hero */}
-      <section className="w-full bg-brand-dark text-white">
-        <div className="container-responsive py-14 sm:py-20">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black">เกี่ยวกับน้ำเปล่ารถสวย</h1>
-          <p className="mt-3 text-white/70 max-w-xl">
-            เพราะอะไรถึงได้รับความไว้วางใจจากลูกค้าทั่วประเทศ
-          </p>
+      <section className="relative w-full">
+        <Image
+          src="/images/about.webp"
+          alt="เกี่ยวกับน้ำเปล่ารถสวย"
+          width={1920}
+          height={650}
+          priority
+          sizes="100vw"
+          className="w-full h-auto block"
+        />
+
+        <div className="absolute inset-0">
+          <div className="container-responsive h-full flex items-center py-6 sm:py-10">
+            <div className="max-w-xl md:max-w-2xl lg:max-w-3xl px-4 sm:px-6 py-3 sm:py-4 text-white drop-shadow-md">
+              <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-lg text-brand-yellow">
+                เกี่ยวกับน้ำเปล่ารถสวย
+              </h1>
+              <p className="mt-2 sm:mt-3 text-brand-yellow font-bold max-w-2xl text-xs sm:text-base md:text-lg lg:text-xl drop-shadow-md">
+                เพราะอะไรถึงได้รับความไว้วางใจจากลูกค้าทั่วประเทศ
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

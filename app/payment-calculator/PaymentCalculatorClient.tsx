@@ -1,5 +1,6 @@
 'use client';
 import { useMemo, useState } from 'react';
+import Image from 'next/image';
 import { formatPriceTHB } from '@/lib/format';
 import Link from 'next/link';
 import { Phone, MessageCircle, AlertTriangle, RotateCcw, Calculator } from 'lucide-react';
@@ -59,16 +60,27 @@ export default function PaymentCalculatorClient() {
   return (
     <div className="mt-0">
       {/* Hero */}
-      <section className="w-full bg-gradient-to-r from-brand-dark to-brand-blue text-white">
-        <div className="container-responsive py-10 sm:py-16 text-center">
-          <div className="inline-flex items-center justify-center p-3 bg-white/10 rounded-full mb-4">
-            <Calculator size={32} className="text-brand-yellow" />
+      <section className="relative w-full">
+        <Image
+          src="/images/payment.webp"
+          alt="คำนวณค่างวด"
+          width={1920}
+          height={650}
+          priority
+          sizes="100vw"
+          className="w-full h-auto block"
+        />
+
+        <div className="absolute inset-0">
+          <div className="container-responsive h-full flex items-center justify-center py-6 sm:py-10">
+            <div className="max-w-xl md:max-w-2xl lg:max-w-3xl px-4 sm:px-6 py-3 sm:py-4 text-center mx-auto">
+              <p className="text-brand-blue font-bold text-sm sm:text-base md:text-lg mb-1 sm:mb-2 drop-shadow-md bg-white/40 px-3 py-1 rounded-full inline-block backdrop-blur-sm shadow-sm ring-1 ring-white/50">วางแผนการเงิน</p>
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-brand-blue drop-shadow-md mt-2 filter">คำนวณค่างวด</h1>
+              <p className="mt-3 sm:mt-4 text-brand-dark font-bold max-w-2xl mx-auto text-sm sm:text-lg md:text-xl lg:text-2xl drop-shadow-md p-2">
+                วางแผนผ่อนชำระค่างวดรถยนต์มือสอง<br className="block sm:hidden" /> ดอกเบี้ยพิเศษ เริ่มต้น 4.5%
+              </p>
+            </div>
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black">คำนวณค่างวด</h1>
-          <p className="mt-3 text-white/80 max-w-xl mx-auto">
-            วางแผนการเงินของคุณง่ายๆ ด้วยโปรแกรมคำนวณค่างวดรถยนต์มือสอง
-            (อัตราดอกเบี้ยแบบคงที่ Flat Rate)
-          </p>
         </div>
       </section>
 

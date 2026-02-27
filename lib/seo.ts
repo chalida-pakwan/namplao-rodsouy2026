@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 const DEFAULT_SITE_NAME = 'น้ำเปล่ารถสวย'
-const DEFAULT_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://kn-goodcar.com'
+const DEFAULT_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://namplao-usedcars.com'
 
 const DEFAULT_OG_IMAGE =
   'https://images.unsplash.com/photo-1542367597-8849ebc76b38?q=80&w=1974&auto=format&fit=crop'

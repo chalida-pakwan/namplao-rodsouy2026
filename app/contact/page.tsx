@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Phone, MessageCircle, MapPin, Clock, Facebook } from 'lucide-react';
 import ContactForm from "@/components/ContactForm";
 import { buildMetadata } from '@/lib/seo';
@@ -51,10 +52,28 @@ export default function ContactPage() {
   return (
     <div className="mt-0">
       {/* Hero */}
-      <section className="w-full bg-gradient-to-r from-brand-dark to-brand-blue text-white">
-        <div className="container-responsive py-14 sm:py-20">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black">ติดต่อเรา</h1>
-          <p className="mt-3 text-white/80">น้ำเปล่ารถสวย รถมือสองเชียงใหม่ พร้อมให้บริการทุกวัน</p>
+      <section className="relative w-full">
+        <Image
+          src="/images/contact.webp"
+          alt="ติดต่อเรา น้ำเปล่ารถสวย"
+          width={1920}
+          height={650}
+          priority
+          sizes="100vw"
+          className="w-full h-auto block"
+        />
+
+        <div className="absolute inset-0">
+          <div className="container-responsive h-full flex items-center py-6 sm:py-10">
+            <div className="max-w-xl md:max-w-2xl lg:max-w-3xl px-4 sm:px-6 py-3 sm:py-4 text-white drop-shadow-md">
+              <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-lg text-brand-blue">
+                ติดต่อเรา
+              </h1>
+              <p className="mt-2 sm:mt-3 text-brand-blue font-bold max-w-2xl text-xs sm:text-base md:text-lg lg:text-xl drop-shadow-md">
+                น้ำเปล่ารถสวย รถมือสองเชียงใหม่ พร้อมให้บริการทุกวัน
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
