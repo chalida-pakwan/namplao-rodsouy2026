@@ -61,6 +61,18 @@ export default function PaymentCalculatorClient() {
   // Generate interest rates
   const interestRates = [4.50, 5.00, 5.50, 6.00, 6.50, 7.00, 7.50, 8.00, 8.50, 9.00];
 
+  // Helper to format number with commas
+  const formatNumber = (num: number) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  // Helper to parse string with commas to number
+  const parseNumber = (val: string) => {
+    const cleanVal = val.replace(/,/g, '');
+    if (cleanVal === '' || isNaN(Number(cleanVal))) return 0;
+    return Number(cleanVal);
+  };
+
   return (
     <div className="mt-0">
       {/* Hero */}
@@ -110,9 +122,11 @@ export default function PaymentCalculatorClient() {
                   <span className="text-sm font-semibold text-slate-700">ราคารถ (บาท)</span>
                   <input
                     className="input mt-1"
-                    type="number"
-                    value={price}
-                    onChange={(e) => handlePriceChange(Number(e.target.value) || 0)}
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="0"
+                    value={price === 0 ? '' : formatNumber(price)}
+                    onChange={(e) => handlePriceChange(parseNumber(e.target.value))}
                   />
                 </label>
 
@@ -120,9 +134,11 @@ export default function PaymentCalculatorClient() {
                   <span className="text-sm font-semibold text-slate-700">ดาวน์ (บาท)</span>
                   <input
                     className="input mt-1"
-                    type="number"
-                    value={downAmount}
-                    onChange={(e) => handleDownAmountChange(Number(e.target.value) || 0)}
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="0"
+                    value={downAmount === 0 ? '' : formatNumber(downAmount)}
+                    onChange={(e) => handleDownAmountChange(parseNumber(e.target.value))}
                   />
                 </label>
 
