@@ -2,6 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .container-responsive {
+    @apply max-w-6xl mx-auto px-4 sm:px-6;
+  }
+  .card {
+    @apply rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+  .glass {
+    @apply bg-white/70 backdrop-blur-xs shadow-glass border border-white/60;
+  }
+  .badge {
+    @apply inline-flex items-center rounded-full text-xs font-medium px-2.5 py-1;
+  }
+  .badge-yellow { @apply badge bg-brand-yellow/30 text-gray-900; }
+  .badge-blue { @apply badge bg-brand-blue/10 text-brand-dark; }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-semibold;
+  }
+  .btn-primary {
+    @apply btn bg-brand-blue text-white hover:bg-brand-dark transition-colors;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent hover:bg-slate-200;
+  }
+  .input, .select {
+    @apply w-full rounded-lg border border-slate-300 focus:outline-none focus:ring-4 focus:ring-brand-blue/20 focus:border-brand-blue px-3 py-2 bg-white;
+  }
+  .skeleton {
+    @apply animate-pulse bg-slate-200 rounded-md;
+  }
+}
+
 :root {
   --radius: 12px;
 }
@@ -11,33 +43,4 @@ html {
 body {
   @apply bg-white text-gray-900 antialiased font-sans;
   overflow-x: hidden;
-}
-.container-responsive {
-  @apply max-w-6xl mx-auto px-4 sm:px-6;
-}
-.card {
-  @apply rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow duration-200;
-}
-.glass {
-  @apply bg-white/70 backdrop-blur-xs shadow-glass border border-white/60;
-}
-.badge {
-  @apply inline-flex items-center rounded-full text-xs font-medium px-2.5 py-1;
-}
-.badge-yellow { @apply badge bg-brand-yellow/30 text-gray-900; }
-.badge-blue { @apply badge bg-brand-blue/10 text-brand-dark; }
-.btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-semibold;
-}
-.btn-primary {
-  @apply btn bg-brand-blue text-white hover:bg-brand-dark transition-colors;
-}
-.btn-ghost {
-  @apply btn bg-transparent hover:bg-slate-200;
-}
-.input, .select {
-  @apply w-full rounded-lg border border-slate-300 focus:outline-none focus:ring-4 focus:ring-brand-blue/20 focus:border-brand-blue px-3 py-2 bg-white;
-}
-.skeleton {
-  @apply animate-pulse bg-slate-200 rounded-md;
 }

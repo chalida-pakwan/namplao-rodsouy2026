@@ -120,7 +120,7 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
           {whyUs.map(f => (
-            <div key={f.title} className="card p-4 sm:p-5 flex gap-3 sm:gap-4 items-start bg-brand-blue border-brand-blue/30 shadow-lg">
+            <div key={f.title} className="rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 p-4 sm:p-5 flex gap-3 sm:gap-4 items-start bg-brand-blue border-brand-blue/30 shadow-lg">
               <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
                 <f.icon size={22} className="text-white drop-shadow-md" />
               </div>
