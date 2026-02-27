@@ -69,7 +69,10 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
           <div className="container-responsive h-full flex items-center py-6 sm:py-10">
             <div className="max-w-xl md:max-w-2xl lg:max-w-3xl px-4 sm:px-6 py-3 sm:py-4 text-brand-dark drop-shadow-md">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black drop-shadow-lg">รถสวยพร้อมขาย</h1>
-              <p className="mt-1 sm:mt-2 text-slate-800 text-sm sm:text-base md:text-lg lg:text-xl">ค้นหารถยนต์มือสองคุณภาพดี ตรวจสภาพครบถ้วน ฟรีดาวน์</p>
+              <p className="mt-1 sm:mt-2 text-slate-800 text-sm sm:text-base md:text-lg lg:text-xl">
+                ค้นหารถยนต์มือสองคุณภาพดี <br className="sm:hidden" />
+                ตรวจสภาพครบถ้วน ฟรีดาวน์
+              </p>
               <p className="mt-1 text-brand-blue font-semibold text-sm sm:text-base md:text-lg lg:text-xl">
                 ทั้งหมด {cars.length} คัน (หน้า {currentPage}/{totalPages || 1})
               </p>

@@ -47,7 +47,7 @@ export default function CreditCheckPage() {
                 ประเมินสินเชื่อเบื้องต้น
               </h1>
               <p className="mt-2 sm:mt-3 text-white/90 max-w-2xl text-xs sm:text-base md:text-lg lg:text-xl">
-                ประเมินคุณสมบัติแบบคร่าว ๆ ก่อนยื่นไฟแนนซ์จริง ช่วยวางแผนเงินดาวน์และเตรียมเอกสารได้ง่ายขึ้น
+                ประเมินคุณสมบัติแบบคร่าว ๆ ก่อนยื่นไฟแนนซ์จริง <br className="block sm:hidden" />ช่วยวางแผนเงินดาวน์และเตรียมเอกสารได้ง่ายขึ้น
               </p>
               <div className="mt-3 sm:mt-4 flex flex-wrap gap-2 sm:gap-3">
                 <a href="https://line.me/R/ti/p/@931prrnt" target="_blank"
@@ -59,7 +59,7 @@ export default function CreditCheckPage() {
                   <Phone className="w-4 h-4 sm:w-5 sm:h-5"/> โทร 094-725-1267
                 </a>
               </div>
-              <p className="mt-2 sm:mt-3 text-[10px] sm:text-xs text-white/80 drop-shadow-md">
+              <p className="mt-2 sm:mt-3 text-[10px] sm:text-xs text-yellow-300 font-medium drop-shadow-md bg-black/40 px-2 py-1 rounded inline-block">
                 * การประเมินหน้านี้เป็นข้อมูลเบื้องต้น ไม่ใช่การตรวจเครดิตบูโร
               </p>
             </div>

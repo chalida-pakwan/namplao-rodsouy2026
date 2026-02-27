@@ -5,23 +5,24 @@ import { formatPriceTHB } from '@/lib/format';
 import Link from 'next/link';
 import { Phone, MessageCircle, AlertTriangle, RotateCcw, Calculator } from 'lucide-react';
 
-const presets = [
-  { label: '2 แสน', price: 200000 },
-  { label: '3 แสน', price: 300000 },
-  { label: '4 แสน', price: 400000 },
-  { label: '5 แสน', price: 500000 },
-  { label: '7 แสน', price: 700000 },
-  { label: '1 ล้าน', price: 1000000 },
-];
 
 export default function PaymentCalculatorClient() {
-  const [price, setPrice] = useState(400000);
+  const [price, setPrice] = useState(0);
   const [downAmount, setDownAmount] = useState(0);
   const [downPercent, setDownPercent] = useState(0);
   const [months, setMonths] = useState(72);
-  const [rate, setRate] = useState(5.5); // Default used car interest rate
+  const [rate, setRate] = useState(7.50); // Default used car interest rate
   const [vat, setVat] = useState(true); // Used cars usually have VAT
   const [age, setAge] = useState(30);
+
+  // Reset function
+  const handleReset = () => {
+    setPrice(0);
+    setDownAmount(0);
+    setDownPercent(0);
+    setMonths(72);
+    setRate(7.50);
+  };
 
   const handleDownPercentChange = (val: number) => {
     setDownPercent(val);
@@ -56,6 +57,9 @@ export default function PaymentCalculatorClient() {
   const monthlyBase = totalAmount / months;
   const monthlyVat = monthlyBase * 0.07;
   const monthlyTotal = vat ? monthlyBase + monthlyVat : monthlyBase;
+
+  // Generate interest rates
+  const interestRates = [4.50, 5.00, 5.50, 6.00, 6.50, 7.00, 7.50, 8.00, 8.50, 9.00];
 
   return (
     <div className="mt-0">
@@ -95,32 +99,10 @@ export default function PaymentCalculatorClient() {
                 <button
                   type="button"
                   className="btn bg-slate-100 text-slate-700 hover:bg-slate-200"
-                  onClick={() => {
-                    setPrice(400000);
-                    setDownAmount(0);
-                    setDownPercent(0);
-                    setMonths(72);
-                    setRate(5.5);
-                    setVat(true);
-                    setAge(30);
-                  }}
+                  onClick={handleReset}
                 >
                   <RotateCcw size={16} /> รีเซ็ต
                 </button>
-              </div>
-
-              {/* Presets */}
-              <div className="flex flex-wrap gap-2">
-                {presets.map((p) => (
-                  <button
-                    key={p.label}
-                    type="button"
-                    className="btn bg-slate-50 border border-slate-200 text-slate-700 hover:bg-slate-100"
-                    onClick={() => handlePriceChange(p.price)}
-                  >
-                    {p.label}
-                  </button>
-                ))}
               </div>
 
               <div className="mt-5 grid sm:grid-cols-2 gap-4">
@@ -135,16 +117,6 @@ export default function PaymentCalculatorClient() {
                 </label>
 
                 <label className="block">
-                  <span className="text-sm font-semibold text-slate-700">ดาวน์ (%)</span>
-                  <input
-                    className="input mt-1"
-                    type="number"
-                    value={downPercent}
-                    onChange={(e) => handleDownPercentChange(Number(e.target.value) || 0)}
-                  />
-                </label>
-
-                <label className="block">
                   <span className="text-sm font-semibold text-slate-700">ดาวน์ (บาท)</span>
                   <input
                     className="input mt-1"
@@ -155,24 +127,33 @@ export default function PaymentCalculatorClient() {
                 </label>
 
                 <label className="block">
-                  <span className="text-sm font-semibold text-slate-700">ระยะเวลาผ่อน (เดือน)</span>
-                  <input
+                  <span className="text-sm font-semibold text-slate-700">ระยะเวลาผ่อน</span>
+                  <select
                     className="input mt-1"
-                    type="number"
                     value={months}
-                    onChange={(e) => setMonths(Number(e.target.value) || 1)}
-                  />
+                    onChange={(e) => setMonths(Number(e.target.value))}
+                  >
+                    {[12, 24, 36, 48, 60, 72, 84].map((m) => (
+                      <option key={m} value={m}>
+                        {m} เดือน ({m / 12} ปี)
+                      </option>
+                    ))}
+                  </select>
                 </label>
 
                 <label className="block">
                   <span className="text-sm font-semibold text-slate-700">ดอกเบี้ยต่อปี (%)</span>
-                  <input
+                  <select
                     className="input mt-1"
-                    type="number"
-                    step="0.1"
                     value={rate}
-                    onChange={(e) => setRate(Number(e.target.value) || 0)}
-                  />
+                    onChange={(e) => setRate(Number(e.target.value))}
+                  >
+                    {interestRates.map((r) => (
+                      <option key={r} value={r}>
+                        {r}%
+                      </option>
+                    ))}
+                  </select>
                 </label>
 
                 <label className="block">
