@@ -25,7 +25,7 @@ export const metadata: Metadata = buildMetadata({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="th" className={notoSansThai.variable}>
-      <body>
+      <body className={notoSansThai.className}>
         {/* Google Analytics: Replace G-XXXXXXXXXX with your Measurement ID */}
         {/* <Script
           strategy="afterInteractive"

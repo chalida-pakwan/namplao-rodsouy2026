@@ -19,8 +19,7 @@ const navLinks = [
 const mobileBottom = [
   { href: '/', label: 'หน้าแรก', icon: Home },
   { href: '/cars', label: 'รถพร้อมขาย', icon: Car },
-  { href: '/sell-car', label: 'ขายรถ', icon: Tag },
-  { href: '/payment-calculator', label: 'คำนวนค่างวด', icon: Calculator },
+  { href: '/payment-calculator', label: 'ค่างวด', icon: Calculator },
   { href: '/contact', label: 'ติดต่อ', icon: Phone },
 ];
 
@@ -54,7 +53,7 @@ export default function NavBar() {
               const active = pathname === l.href || (l.href !== '/' && pathname.startsWith(l.href));
               return (
                 <Link key={l.href} href={l.href}
-                  className={`px-3 py-2 rounded-lg font-medium text-sm transition-colors ${
+                  className={`px-3 py-2 rounded-lg font-medium text-sm transition-colors relative flex items-center gap-1 ${
                     active
                       ? 'bg-brand-yellow text-brand-dark'
                       : 'text-white/90 hover:bg-white/10 hover:text-white'
@@ -67,8 +66,8 @@ export default function NavBar() {
 
           {/* Mobile hamburger */}
           <button
-            className="lg:hidden text-white p-2 rounded-lg hover:bg-white/10"
-            onClick={() => setMobileOpen(o => !o)}
+            className="lg:hidden text-white p-2 rounded-lg hover:bg-white/10 relative z-50"
+            onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="เมนู">
             {mobileOpen ? <X size={24}/> : <Menu size={24}/>}
           </button>
@@ -76,23 +75,30 @@ export default function NavBar() {
 
         {/* Mobile dropdown menu */}
         {mobileOpen && (
-          <div className="lg:hidden bg-brand-dark border-t border-white/10 pb-4">
-            <div className="container-responsive flex flex-col gap-1 pt-2">
+          <div className="lg:hidden fixed top-[64px] left-0 right-0 bottom-0 z-40 bg-brand-dark/95 backdrop-blur-sm animate-in slide-in-from-top-10">
+            <div className="container-responsive flex flex-col gap-2 p-4 h-full overflow-y-auto">
               {navLinks.map((l) => {
                 const active = pathname === l.href || (l.href !== '/' && pathname.startsWith(l.href));
+                const Icon = l.icon;
                 return (
                   <Link key={l.href} href={l.href}
                     onClick={() => setMobileOpen(false)}
-                    prefetch={false}
-                    className={`px-4 py-3 rounded-lg font-medium text-sm transition-colors ${
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-base transition-colors ${
                       active
                         ? 'bg-brand-yellow text-brand-dark'
                         : 'text-white/90 hover:bg-white/10'
                     }`}>
-                    {l.label}
+                    <Icon size={20} className={active ? 'text-brand-dark' : 'text-brand-yellow'}/>
+                    <span className="flex-1">{l.label}</span>
                   </Link>
                 );
               })}
+              <div className="mt-4 pt-4 border-t border-white/10 text-center">
+                 <p className="text-white/50 text-xs">ติดต่อเรา</p>
+                 <div className="flex justify-center gap-4 mt-2">
+                    <a href="tel:0947251267" className="w-10 h-10 rounded-full bg-brand-blue/20 flex items-center justify-center text-brand-blue"><Phone size={20}/></a>
+                 </div>
+              </div>
             </div>
           </div>
         )}
@@ -106,7 +112,7 @@ export default function NavBar() {
             const Icon = l.icon;
             return (
               <Link key={l.href} href={l.href}
-                className={`flex flex-col items-center gap-1 px-2 py-1 rounded-xl transition-all ${
+                className={`relative flex flex-col items-center gap-1 px-2 py-1 rounded-xl transition-all ${
                   active
                     ? 'text-brand-yellow'
                     : 'text-white/70 hover:text-white'

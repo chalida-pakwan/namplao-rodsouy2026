@@ -11,6 +11,7 @@ const mainLinks = [
   { href: '/credit-check', label: 'เช็คเครดิต' },
   { href: '/contact', label: 'ติดต่อเรา' },
   { href: '/payment-calculator', label: 'คำนวนค่างวด' },
+  { href: '/privacy-policy', label: 'นโยบายความเป็นส่วนตัว' },
 ];
 
 export default function Footer() {
