@@ -120,13 +120,13 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
           {whyUs.map(f => (
-            <div key={f.title} className="card p-4 sm:p-5 flex gap-3 sm:gap-4 items-start">
-              <div className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-blue/10 flex items-center justify-center">
-                <f.icon size={18} className="text-brand-blue" />
+            <div key={f.title} className="card p-4 sm:p-5 flex gap-3 sm:gap-4 items-start bg-brand-blue border-brand-blue/30 shadow-lg">
+              <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                <f.icon size={22} className="text-white drop-shadow-md" />
               </div>
               <div>
-                <div className="font-bold text-brand-dark text-sm sm:text-base">{f.title}</div>
-                <p className="text-xs sm:text-sm text-slate-500 mt-0.5 sm:mt-1">{f.desc}</p>
+                <div className="font-bold text-white text-base sm:text-lg mb-0.5">{f.title}</div>
+                <p className="text-sm text-blue-50 leading-snug">{f.desc}</p>
               </div>
             </div>
           ))}
