@@ -4,9 +4,9 @@ import { MessageCircle, Phone, Car, Shield, Wallet, Truck, FileText, Award } fro
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
-  title: 'เกี่ยวกับเรา | น้ำเปล่รถสวย รถมือสองเชียงใหม่',
+  title: 'เกี่ยวกับเรา | น้ำเปล่ารถสวย รถมือสองเชียงใหม่',
   description:
-    'น้ำเปล่รถสวย ศูนย์รวมรถบ้านคุณภาพดีในเชียงใหม่ มีประสบการณ์มากกว่า 10 ปี คัดสรรรถคุณภาพ บริการด้วยความจริงใจ',
+    'น้ำเปล่ารถสวย ศูนย์รวมรถบ้านคุณภาพดีในเชียงใหม่ มีประสบการณ์มากกว่า 10 ปี คัดสรรรถคุณภาพ บริการด้วยความจริงใจ',
   path: '/about',
 });
 

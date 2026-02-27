@@ -5,8 +5,8 @@ import ContactForm from "@/components/ContactForm";
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
-  title: 'ติดต่อเรา | น้ำเปล่รถสวย รถมือสองเชียงใหม่',
-  description: 'ติดต่อน้ำเปล่รถสวย โทร 094-725-1267 LINE @931prrnt เปิดทุกวัน 09:00-18:00 น. เชียงใหม่',
+  title: 'ติดต่อเรา | น้ำเปล่ารถสวย รถมือสองเชียงใหม่',
+  description: 'ติดต่อน้ำเปล่ารถสวย โทร 094-725-1267 LINE @931prrnt เปิดทุกวัน 09:00-18:00 น. เชียงใหม่',
   path: '/contact',
 });
 

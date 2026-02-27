@@ -16,14 +16,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   if (!car) {
     return buildMetadata({
-      title: 'ไม่พบรถ | น้ำเปล่รถสวย',
+      title: 'ไม่พบรถ | น้ำเปล่ารถสวย',
       description: 'ไม่พบรายการรถที่คุณค้นหา',
       path: `/cars/${params.slug}`,
       noIndex: true,
     });
   }
 
-  const title = `${car.title} | น้ำเปล่รถสวย`;
+  const title = `${car.title} | น้ำเปล่ารถสวย`;
   const description = `รถมือสอง ${car.brand} ${car.model} ปี ${car.year} ราคา ${formatPriceTHB(car.price)} คัดสภาพพร้อมขาย`; 
   const image = car.heroImage || car.gallery?.[0];
 
