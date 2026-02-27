@@ -36,7 +36,7 @@ const contacts = [
     icon: MapPin,
     title: 'ที่อยู่',
     value: 'เชียงใหม่',
-    href: 'https://maps.google.com',
+    href: 'https://maps.app.goo.gl/3ZUdPvoKoqjKNXsk7',
     color: 'bg-red-50 text-red-600',
   },
   {
@@ -114,12 +114,22 @@ export default function ContactPage() {
             </a>
           </div>
 
-          {/* Map placeholder */}
-          <div className="mt-6 rounded-xl overflow-hidden bg-slate-200 h-48 flex items-center justify-center">
-            <a href="https://maps.google.com" target="_blank"
-              className="text-brand-blue font-semibold flex items-center gap-2">
-              <MapPin size={20}/> ดูแผนที่ใน Google Maps
-            </a>
+          {/* Map */}
+          <div className="mt-6 rounded-xl overflow-hidden shadow-lg border border-slate-200">
+            <iframe
+              src="https://maps.google.com/maps?q=18.804924,99.030168&hl=th&z=15&output=embed"
+              width="100%"
+              height="300"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <div className="p-3 bg-white text-center">
+              <a href="https://maps.app.goo.gl/3ZUdPvoKoqjKNXsk7" target="_blank" className="text-sm font-bold text-brand-blue hover:underline flex items-center justify-center gap-1">
+                <MapPin size={16}/> เปิดใน Google Maps
+              </a>
+            </div>
           </div>
         </div>
 
