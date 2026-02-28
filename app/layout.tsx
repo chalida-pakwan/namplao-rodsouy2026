@@ -6,6 +6,7 @@ import NavBar from '@/components/NavBar'
 import Footer from '@/components/Footer'
 import FloatingContact from '@/components/FloatingContact'
 import { buildMetadata } from '@/lib/seo'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 const notoSansThai = Noto_Sans_Thai({
   subsets: ['thai', 'latin'],
@@ -26,22 +27,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="th" className={notoSansThai.variable}>
       <body className={notoSansThai.className}>
-        {/* Google Analytics: Replace G-XXXXXXXXXX with your Measurement ID */}
-        {/* <Script
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX`}
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-        >
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');
-          `}
-        </Script> */}
+        {/* Google Analytics */}
+        <GoogleAnalytics gaId="G-22JMNZJ5KF" />
+        
         <NavBar/>
         <main className="pt-16 pb-20 lg:pb-0">{children}</main>
         <Footer/>
