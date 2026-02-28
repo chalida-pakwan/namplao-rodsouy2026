@@ -33,7 +33,8 @@ export function buildMetadata(input: SeoInput): Metadata {
   const baseUrl = getBaseUrl()
   const url = input.path ? new URL(input.path, baseUrl).toString() : baseUrl.toString()
 
-  const image = toAbsoluteUrl(input.image || DEFAULT_OG_IMAGE, baseUrl)
+  // Ensure image is absolute URL
+  const image = input.image ? toAbsoluteUrl(input.image, baseUrl) : DEFAULT_OG_IMAGE
 
   return {
     metadataBase: baseUrl,
@@ -45,7 +46,14 @@ export function buildMetadata(input: SeoInput): Metadata {
       description: input.description,
       url,
       siteName: DEFAULT_SITE_NAME,
-      images: [{ url: image }],
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: input.title,
+        }
+      ],
       locale: 'th_TH',
       type: input.openGraphType || 'website',
     },
