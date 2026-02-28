@@ -21,7 +21,7 @@ export async function shopifyFetch<T>({
         'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
       },
       body: JSON.stringify({ query, variables }),
-      next: { revalidate: 3600 }, // Cache for 1 hour to reduce server load
+      next: { revalidate: 0 }, // Disable caching for now so updates are instant
     });
 
     const json = await response.json();
@@ -105,9 +105,10 @@ function mapShopifyProductToCar(node: any): Car {
     gallery: gallery, // Will now contain as many as fetched
     features: features,
     description: node.descriptionHtml.replace(/<[^>]*>?/gm, ''), // Strip HTML
-    sold: !node.availableForSale,
+    sold: !node.availableForSale || node.tags.includes('Reserved') || node.tags.includes('จองแล้ว'),
   } as unknown as Car;
 }
+
 
 function safeDecodeHandle(handle: string) {
   try {
@@ -217,13 +218,17 @@ export async function getCars() {
     }
   `;
 
+  // Use a cache-busting timestamp to force fresh data
   const data = await shopifyFetch<{
     products: {
       edges: Array<{
         node: any
       }>
     }
-  }>({ query });
+  }>({ 
+    query,
+    variables: { t: Date.now() } 
+  });
 
   return data?.products.edges.map(({ node }) => mapShopifyProductToCar(node)) || [];
 }

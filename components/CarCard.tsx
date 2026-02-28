@@ -44,8 +44,8 @@ export default function CarCard({ car, priority = false, onNavigate }: CarCardPr
           className="object-cover transition-transform duration-300 group-hover:scale-105" 
         />
         {car.sold && (
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <span className="text-white font-bold text-lg">จองแล้ว</span>
+          <div className="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-md z-10 animate-in fade-in zoom-in duration-300">
+            จองแล้ว
           </div>
         )}
       </div>
