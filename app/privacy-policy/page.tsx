@@ -1,4 +1,5 @@
 import { buildMetadata } from '@/lib/seo';
+import PageBreadcrumb from '@/components/PageBreadcrumb';
 
 export const metadata = buildMetadata({
   title: 'นโยบายความเป็นส่วนตัว | น้ำเปล่ารถสวย',
@@ -12,7 +13,8 @@ export default function PrivacyPolicyPage() {
   const updatedAt = '28 กุมภาพันธ์ 2569';
 
   return (
-    <div className="container-responsive mt-10 sm:mt-12">
+    <div className="container-responsive mt-8 sm:mt-10">
+      <PageBreadcrumb items={[{ label: 'นโยบายความเป็นส่วนตัว' }]} />
       <h1 className="text-3xl sm:text-4xl font-black text-brand-dark">นโยบายความเป็นส่วนตัว</h1>
       <p className="mt-2 text-sm text-slate-500">อัปเดตล่าสุด: {updatedAt}</p>
 

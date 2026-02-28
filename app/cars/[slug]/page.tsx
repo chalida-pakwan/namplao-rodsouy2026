@@ -8,6 +8,8 @@ import ContactBar from '@/components/ContactBar';
 import ShareButtons from '@/components/ShareButtons';
 import CarGallery from './CarGallery';
 import { buildMetadata, getSiteUrl } from '@/lib/seo';
+import BackButton from './BackButton';
+import PageBreadcrumb from '@/components/PageBreadcrumb';
 
 export const revalidate = 60;
 
@@ -73,6 +75,16 @@ export default async function CarDetail({ params }: { params: { slug: string } }
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <BackButton />
+        <PageBreadcrumb
+          items={[
+            { label: 'รถสวยพร้อมขาย', href: '/cars' },
+            { label: car.title },
+          ]}
+        />
+      </div>
 
       <div className="grid lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Gallery (7 cols) */}

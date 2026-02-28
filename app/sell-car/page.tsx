@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Phone, MessageCircle, CheckCircle, Car, ClipboardList, FileText } from 'lucide-react';
 import SellCarForm from '@/components/SellCarForm';
 import { buildMetadata } from '@/lib/seo';
+import PageBreadcrumb from '@/components/PageBreadcrumb';
 
 export const metadata = buildMetadata({
   title: 'รับซื้อรถเชียงใหม่ ให้ราคาสูง • ประเมินราคาฟรี | น้ำเปล่ารถสวย',
@@ -64,6 +65,10 @@ export default function SellCarPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="container-responsive mt-5 sm:mt-6">
+        <PageBreadcrumb items={[{ label: 'ขายรถ / ฝากขาย' }]} />
       </section>
 
       {/* Services */}

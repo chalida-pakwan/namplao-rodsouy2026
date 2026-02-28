@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { MessageCircle, Phone, Car, Shield, Wallet, Truck, FileText, Award } from 'lucide-react';
 import { buildMetadata } from '@/lib/seo';
+import PageBreadcrumb from '@/components/PageBreadcrumb';
 
 export const metadata = buildMetadata({
   title: 'เกี่ยวกับเรา | น้ำเปล่ารถสวย รถมือสองเชียงใหม่',
@@ -65,6 +66,10 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="container-responsive mt-5 sm:mt-6">
+        <PageBreadcrumb items={[{ label: 'เกี่ยวกับเรา' }]} />
       </section>
 
         {/* Story */}

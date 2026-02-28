@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { cars as allCars, type Car } from '@/data/cars';
 import CarCard from '@/components/CarCard';
@@ -7,8 +7,19 @@ import Filters from '@/components/Filters';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Car as CarIcon, ChevronLeft, ChevronRight } from 'lucide-react';
+import PageBreadcrumb from '@/components/PageBreadcrumb';
 
 const ITEMS_PER_PAGE = 12;
+
+const RETURN_STATE_KEY = 'namplao:return:cars';
+
+type ReturnState = {
+  href: string;
+  scrollY: number;
+  page: number;
+  ids: string[];
+  ts: number;
+};
 
 const faqs = [
   { q: 'รถมือสองมีให้เลือกกี่คัน?', a: 'น้ำเปล่ารถสวยมีรถคุณภาพดีคัดสรรมาให้เลือกกว่า 100 คัน ทั้งรถเก๋ง กระบะ SUV รถครอบครัว อัปเดตรถใหม่เข้าทุกสัปดาห์' },
@@ -25,7 +36,43 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const pendingRestoreRef = useRef<ReturnState | null>(null);
+  const didRestoreRef = useRef(false);
+
+  const restoreFromState = (state: ReturnState) => {
+    const byId = new Map(sourceCars.map((c) => [c.id, c] as const));
+    const restoredList = state.ids.map((id) => byId.get(id)).filter(Boolean) as Car[];
+    setCars(restoredList.length > 0 ? restoredList : sourceCars);
+    setCurrentPage(state.page && state.page > 0 ? state.page : 1);
+    pendingRestoreRef.current = state;
+  };
+
+  // Read restore state once (only on the client)
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const raw = sessionStorage.getItem(RETURN_STATE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw) as ReturnState;
+      if (!parsed || typeof parsed.href !== 'string') return;
+      // Ignore very old entries (15 minutes)
+      if (typeof parsed.ts === 'number' && Date.now() - parsed.ts > 15 * 60 * 1000) return;
+      if (parsed.href === `${window.location.pathname}${window.location.search}`) {
+        restoreFromState(parsed);
+      }
+    } catch {
+      // ignore
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    // If we have a pending restore for this exact URL, prefer restoring the saved list/page
+    if (pendingRestoreRef.current && !didRestoreRef.current) {
+      didRestoreRef.current = true;
+      return;
+    }
+
     const brand = searchParams.get('brand');
     const price = searchParams.get('price');
     let list = sourceCars;
@@ -38,8 +85,42 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
     setCurrentPage(1);
   }, [searchParams, sourceCars]);
 
+  // After restore, jump back to the exact scroll position
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const state = pendingRestoreRef.current;
+    if (!state) return;
+
+    // Wait a tick so the grid/pagination renders
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: Math.max(0, state.scrollY || 0), behavior: 'auto' });
+      pendingRestoreRef.current = null;
+      try {
+        sessionStorage.removeItem(RETURN_STATE_KEY);
+      } catch {
+        // ignore
+      }
+    });
+  }, [cars.length, currentPage]);
+
   const totalPages = Math.ceil(cars.length / ITEMS_PER_PAGE);
   const paginatedCars = cars.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+
+  const handleNavigateToCar = () => {
+    if (typeof window === 'undefined') return;
+    try {
+      const state: ReturnState = {
+        href: `${window.location.pathname}${window.location.search}`,
+        scrollY: window.scrollY,
+        page: currentPage,
+        ids: cars.map((c) => c.id),
+        ts: Date.now(),
+      };
+      sessionStorage.setItem(RETURN_STATE_KEY, JSON.stringify(state));
+    } catch {
+      // ignore
+    }
+  };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -85,6 +166,10 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
         </div>
       </section>
 
+      <section className="container-responsive mt-4 sm:mt-5">
+        <PageBreadcrumb items={[{ label: 'รถสวยพร้อมขาย' }]} />
+      </section>
+
       {/* Filters */}
       <div className="container-responsive mt-4 sm:mt-6">
         <Filters cars={sourceCars} onFiltered={handleFiltered} />
@@ -93,7 +178,7 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
       {/* Grid */}
       <div className="container-responsive mt-4 sm:mt-6 min-h-[500px]">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
-          {paginatedCars.map(c => <CarCard key={c.id} car={c} />)}
+          {paginatedCars.map(c => <CarCard key={c.id} car={c} onNavigate={handleNavigateToCar} />)}
           {cars.length === 0 && (
             <div className="col-span-full text-center py-16 text-slate-500">
               <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-slate-100 flex items-center justify-center">

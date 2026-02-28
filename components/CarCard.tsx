@@ -8,9 +8,10 @@ import { Gauge, Cog, Fuel, MapPin, Calendar } from 'lucide-react';
 interface CarCardProps {
   car: Car;
   priority?: boolean;
+  onNavigate?: () => void;
 }
 
-export default function CarCard({ car, priority = false }: CarCardProps) {
+export default function CarCard({ car, priority = false, onNavigate }: CarCardProps) {
   const transmissionMap = {
     'AT': 'เกียร์อัตโนมัติ',
     'MT': 'เกียร์ธรรมดา'
@@ -24,7 +25,13 @@ export default function CarCard({ car, priority = false }: CarCardProps) {
   };
 
   return (
-    <Link href={`/cars/${car.slug}`} className="card overflow-hidden group hover:shadow-lg transition-all">
+    <Link
+      href={`/cars/${car.slug}`}
+      onClick={() => {
+        onNavigate?.();
+      }}
+      className="card overflow-hidden group hover:shadow-lg transition-all"
+    >
       {/* Image Container */}
       <div className="relative w-full aspect-[16/10] bg-gray-100">
         <Image 

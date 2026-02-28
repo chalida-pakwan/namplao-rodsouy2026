@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { formatPriceTHB } from '@/lib/format';
 import Link from 'next/link';
 import { Phone, MessageCircle, AlertTriangle, RotateCcw, Calculator } from 'lucide-react';
+import PageBreadcrumb from '@/components/PageBreadcrumb';
 
 
 export default function PaymentCalculatorClient() {
@@ -98,6 +99,10 @@ export default function PaymentCalculatorClient() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="container-responsive mt-5 sm:mt-6">
+        <PageBreadcrumb items={[{ label: 'คำนวณค่างวด' }]} />
       </section>
 
       {/* Calculator */}

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Phone, MessageCircle, MapPin, Clock, Facebook } from 'lucide-react';
 import ContactForm from "@/components/ContactForm";
 import { buildMetadata } from '@/lib/seo';
+import PageBreadcrumb from '@/components/PageBreadcrumb';
 
 export const metadata = buildMetadata({
   title: 'ติดต่อเรา | น้ำเปล่ารถสวย รถมือสองเชียงใหม่',
@@ -75,6 +76,10 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="container-responsive mt-5 sm:mt-6">
+        <PageBreadcrumb items={[{ label: 'ติดต่อเรา' }]} />
       </section>
 
       <div className="container-responsive mt-10 grid lg:grid-cols-2 gap-8">

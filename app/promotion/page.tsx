@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { MessageCircle, Phone, Flame, Shield, Truck, CreditCard } from 'lucide-react';
 import { buildMetadata } from '@/lib/seo';
+import PageBreadcrumb from '@/components/PageBreadcrumb';
 
 export const metadata = buildMetadata({
   title: 'โปรโมชั่น | น้ำเปล่ารถสวย รถมือสองเชียงใหม่',
@@ -70,6 +71,10 @@ export default function PromotionPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="container-responsive mt-5 sm:mt-6">
+        <PageBreadcrumb items={[{ label: 'โปรโมชั่น' }]} />
       </section>
 
       {/* Promos Grid */}

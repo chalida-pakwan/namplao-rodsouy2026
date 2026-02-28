@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { MessageCircle, Phone, CheckCircle, AlertCircle, CalendarCheck, CreditCard, ClipboardList, Briefcase, Building2, Gift, Zap } from 'lucide-react';
 import CreditCheckForm from '@/components/CreditCheckForm';
 import { buildMetadata } from '@/lib/seo';
+import PageBreadcrumb from '@/components/PageBreadcrumb';
 
 export const metadata = buildMetadata({
   title: 'เช็คเครดิต ตรวจสอบเครดิต | น้ำเปล่ารถสวย',
@@ -65,6 +66,10 @@ export default function CreditCheckPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="container-responsive mt-5 sm:mt-6">
+        <PageBreadcrumb items={[{ label: 'ประเมินสินเชื่อ' }]} />
       </section>
 
       {/* Form */}
