@@ -119,7 +119,18 @@ export async function updateProductTags(id: string, tags: string[]) {
     },
   };
 
-  return shopifyAdminFetch({ query: mutation, variables });
+  return shopifyAdminFetch<{
+    productUpdate: {
+      product: {
+        id: string;
+        tags: string[];
+      };
+      userErrors: Array<{
+        field: string[];
+        message: string;
+      }>;
+    };
+  }>({ query: mutation, variables });
 }
 
 export async function getProductTags(id: string): Promise<string[]> {

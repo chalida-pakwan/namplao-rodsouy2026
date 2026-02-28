@@ -38,8 +38,10 @@ export async function POST(request: NextRequest) {
 
     const result = await updateProductTags(id, newTags);
 
-    if (result.productUpdate?.userErrors?.length > 0) {
-      return NextResponse.json({ errors: result.productUpdate.userErrors }, { status: 400 });
+    if (!result?.productUpdate || (result.productUpdate.userErrors && result.productUpdate.userErrors.length > 0)) {
+       return NextResponse.json({ 
+         error: result?.productUpdate?.userErrors?.[0]?.message || 'Update failed' 
+       }, { status: 400 });
     }
 
     return NextResponse.json({ 
