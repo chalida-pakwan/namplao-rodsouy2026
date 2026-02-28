@@ -51,7 +51,7 @@ async function shopifyAdminFetch<T>({
 export async function getAdminProducts() {
   const query = `
     query getProducts {
-      products(first: 50, reverse: true) {
+      products(first: 250, reverse: true) {
         edges {
           node {
             id
