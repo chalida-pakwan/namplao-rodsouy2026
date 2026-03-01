@@ -73,7 +73,9 @@ export default function CreditCheckPage() {
       </section>
 
       {/* Form */}
-      <CreditCheckForm />
+      <section className="container-responsive py-8">
+        <CreditCheckForm />
+      </section>
 
       {/* What is credit */}
       <section className="container-responsive mt-12 sm:mt-16">
