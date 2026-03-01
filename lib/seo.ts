@@ -81,3 +81,65 @@ export function buildMetadata(input: SeoInput): Metadata {
 export function getSiteUrl() {
   return DEFAULT_SITE_URL
 }
+
+/**
+ * Generates Structured Data (JSON-LD) for the Promotions/Offers page.
+ * Promotes visibility of active car dealership deals on Google.
+ */
+export function generatePromotionsSchema() {
+  const url = `${getSiteUrl()}/promotion`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": url,
+    "name": "โปรโมชั่น | น้ำเปล่ารถสวย รถมือสองเชียงใหม่",
+    "description": "รวมโปรโมชั่นพิเศษน้ำเปล่ารถสวย ฟรีดาวน์ ดอกเบี้ยถูก รับประกันเครื่องเกียร์ 1 ปีเต็ม",
+    "mainEntity": {
+      "@type": "OfferCatalog",
+      "name": "ข้อเสนอพิเศษรถยนต์มือสอง",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "ออกรถฟรีดาวน์ 0%"
+          },
+          "description": "ออกรถได้เลย ไม่ต้องวางเงินดาวน์ สำหรับลูกค้าที่มีเครดิตดี อนุมัติง่าย รวดเร็ว",
+          "priceCurrency": "THB",
+          "price": "0",
+          "url": url
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "WarrantyPromise",
+            "name": "รับประกันเครื่องเกียร์ 1 ปีเต็ม"
+          },
+          "description": "ซื้อรถทุกคันรับประกันเครื่องยนต์และเกียร์ 1 ปีเต็ม ไม่จำกัดกิโลเมตร ไม่มีค่าใช้จ่ายเพิ่มเติม",
+          "priceCurrency": "THB",
+          "price": "0",
+          "url": url
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "DeliveryEvent",
+            "name": "จัดส่งฟรีทั่วประเทศ"
+          },
+          "description": "บริการส่งรถถึงบ้านฟรีทุกจังหวัดทั่วไทย ลูกค้าไม่ต้องเดินทางมารับเอง",
+          "url": url
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "FinancialProduct",
+            "name": "จัดไฟแนนซ์ ดอกเบี้ยพิเศษ"
+          },
+          "description": "อัตราดอกเบี้ยพิเศษจากสถาบันการเงินชั้นนำ ผ่อนสบาย ค่างวดต่ำ",
+          "url": url
+        }
+      ]
+    }
+  }
+}

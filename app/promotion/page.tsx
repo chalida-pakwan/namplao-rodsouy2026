@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { MessageCircle, Phone, Flame, Shield, Truck, CreditCard } from 'lucide-react';
-import { buildMetadata } from '@/lib/seo';
+import { buildMetadata, generatePromotionsSchema } from '@/lib/seo';
 import PageBreadcrumb from '@/components/PageBreadcrumb';
 
 export const metadata = buildMetadata({
@@ -46,8 +46,14 @@ const promos = [
 ];
 
 export default function PromotionPage() {
+  const schema = generatePromotionsSchema();
+
   return (
     <div className="mt-0">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       {/* Banner Image */}
       <section className="relative w-full">
         <Image
@@ -81,13 +87,15 @@ export default function PromotionPage() {
       <section className="container-responsive mt-10 sm:mt-12">
         <div className="grid md:grid-cols-2 gap-6">
           {promos.map((p, i) => (
-            <div key={i} className={`rounded-2xl bg-gradient-to-br ${p.color} text-white p-6`}>
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-white/20 px-3 py-1 rounded-full">
+            <div key={i} className={`rounded-2xl bg-gradient-to-br ${p.color} text-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:brightness-110 cursor-pointer`}>
+              <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-white/20 px-3 py-1 rounded-full shadow-sm shadow-white/10">
                 <p.icon size={13}/>{p.badge}
               </span>
-              <h2 className="mt-4 text-2xl font-black">{p.title}</h2>
-              <p className="mt-2 text-white/80">{p.desc}</p>
-              <p className="mt-3 text-xs text-white/50">* {p.detail}</p>
+              <h2 className="mt-4 text-2xl font-black drop-shadow-sm">{p.title}</h2>
+              <p className="mt-2 text-white/90 leading-relaxed">{p.desc}</p>
+              <div className="mt-4 inline-block bg-black/15 px-3 py-1.5 rounded-lg border border-white/10">
+                <p className="text-xs text-white/90 font-medium">* {p.detail}</p>
+              </div>
             </div>
           ))}
         </div>
