@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { MessageCircle, Phone, Car, Shield, Wallet, Truck, FileText, Award } from 'lucide-react';
 import { buildMetadata } from '@/lib/seo';
 import PageBreadcrumb from '@/components/PageBreadcrumb';
+import DeliveryGallery from '@/components/DeliveryGallery';
 
 export const metadata = buildMetadata({
   title: 'เกี่ยวกับเรา | น้ำเปล่ารถสวย รถมือสองเชียงใหม่',
@@ -22,26 +23,64 @@ const highlights = [
 
 const story = [
   {
-    title: 'จุดเริ่มต้นของน้ำเปล่ารถสวย',
-    desc: 'น้ำเปล่ารถสวยเริ่มต้นจากความหลงใหลในรถยนต์และความต้องการหารถคุณภาพดีให้ลูกค้า จากประสบการณ์การซื้อรถครั้งแรกที่ต้องเสี่ยงดวงเพราะขาดความรู้เรื่องรถยนต์ จึงเป็นแรงบันดาลใจให้เข้าสู่วงการรถมือสอง',
+    title: 'จุดเริ่มต้นของเต็นท์รถมือสอง',
+    desc: 'น้ำเปล่ารถสวยเริ่มต้นจากความหลงใหลในรถยนต์และความต้องการหารถคุณภาพดีให้ลูกค้า จากประสบการณ์การซื้อรถครั้งแรกที่ต้องเสี่ยงดวงเพราะขาดความรู้เรื่องรถยนต์ จึงเป็นแรงบันดาลใจให้เข้าสู่วงการรถมือสอง เพื่อเป็นเซฟโซนให้กับผู้ซื้อ',
   },
   {
     title: 'ก้าวสู่วงการรถมือสองเชียงใหม่',
-    desc: 'ด้วยความซื่อสัตย์ จริงใจ และใส่ใจลูกค้าทุกราย ทำให้ได้รับความไว้วางใจจากลูกค้าทั่วเชียงใหม่และภาคเหนือ จนขยายมาเป็นร้านรถมือสองออนไลน์ที่ให้บริการลูกค้าทั่วประเทศ',
+    desc: 'ด้วยความซื่อสัตย์ จริงใจ และใส่ใจลูกค้าทุกราย ทำให้ร้าน "น้ำเปล่ารถสวย" ได้รับความไว้วางใจจากลูกค้าทั่วจังหวัดเชียงใหม่และภาคเหนือ จนขยายมาเป็นเต็นท์รถยนต์มือสองออนไลน์ระดับประเทศ',
   },
   {
-    title: 'น้ำเปล่ารถสวยในปัจจุบัน',
-    desc: 'วันนี้ เรามีทีมขาย ทีมจัดส่ง ทีมบริการจัดสินเชื่อให้ทั่วประเทศ คัดเลือกเฉพาะรถบ้านแท้ รถมือเดียว พร้อมรับประกันเครื่องเกียร์ 1 ปี ไม่จำกัดกิโลเมตร เป้าหมายคือ "การทำให้รถมือสองซื้อง่าย ปลอดภัย อุ่นใจ ไว้ใจได้"',
+    title: 'น้ำเปล่ารถสวยเต็นท์รถมือสองเชียงใหม่ในปัจจุบัน',
+    desc: 'วันนี้ เรามีทีมขาย ทีมจัดส่ง ทีมบริการจัดไฟแนนซ์สินเชื่อยานยนต์ให้ทั่วประเทศ คัดเลือกเฉพาะรถบ้านแท้ รถมือเดียว พร้อมบริการรับประกันเครื่องยนต์และเกียร์ 1 ปีเต็ม ไม่จำกัดระยะทาง เป้าหมายคือ "การทำให้รถมือสองซื้อง่าย ปลอดภัย อุ่นใจ ไว้ใจได้"',
   },
   {
     title: 'มาตรฐานการให้บริการ',
-    desc: 'ลูกค้าสามารถขอดูตรวจสอบเล่มทะเบียนได้ทุกคันทุกหน้าแบบไม่มีปกปิด เพราะสิ่งที่เราเน้นคือความโปร่งใสและความซื่อสัตย์ในทุกขั้นตอน',
+    desc: 'ลูกค้าสามารถขอดูและตรวจสอบเล่มทะเบียนรถยนต์ได้ทุกคันแบบไม่มีปกปิด หรือพาช่างมาดูรถที่เต็นท์ได้เลย เพราะสิ่งที่เราเน้นคือความโปร่งใสและความซื่อสัตย์ในทุกขั้นตอนของการซื้อขาย',
   },
 ];
 
 export default function AboutPage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'น้ำเปล่ารถสวย',
+    image: 'https://www.namplaorodsouy.com/images/about.webp',
+    '@id': 'https://www.namplaorodsouy.com/about',
+    url: 'https://www.namplaorodsouy.com/',
+    telephone: '+66947251267',
+    priceRange: '฿฿฿',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'ใกล้แยกพรอมเมนาดา ถนนซุปเปอร์ไฮเวย์เชียงใหม่-ลำปาง',
+      addressLocality: 'ท่าศาลา',
+      addressRegion: 'เชียงใหม่',
+      postalCode: '50000',
+      addressCountry: 'TH'
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: '18.766324',
+      longitude: '99.038167'
+    },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '09:00',
+      closes: '18:00'
+    },
+    sameAs: [
+      'https://www.facebook.com/namplaorodsouy',
+      'https://line.me/R/ti/p/@931prrnt'
+    ]
+  };
+
   return (
     <div className="mt-0">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <section className="relative w-full">
         <Image
@@ -112,13 +151,21 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Customer Deliveries (Testimonials / Gallery) */}
+      <section className="container-responsive mt-12 sm:mt-16">
+        <h2 className="text-2xl font-black text-brand-dark text-center mb-2">ภาพความประทับใจส่งมอบรถ</h2>
+        <p className="text-center text-slate-500 mb-8">ส่วนหนึ่งของลูกค้าน้ำเปล่ารถสวย ที่ให้ความไว้วางใจออกรถกับเรา</p>
+
+        <DeliveryGallery />
+      </section>
+
       {/* Contact CTA */}
       <section className="container-responsive mt-12 sm:mt-16 mb-8 sm:mb-12">
       <div className="card p-6 sm:p-8 bg-gradient-to-r from-brand-dark to-brand-blue text-white text-center">
         <h2 className="text-2xl font-black">ซื้อรถมือสองที่ไหนดี ให้ปลอดภัยไม่ถูกหลอก?</h2>
         <p className="mt-2 text-white/80">ลองติดต่อสอบถามน้ำเปล่ารถสวยได้เลย ให้คำปรึกษาฟรี</p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <a href="https://line.me/R/ti/p/@931prrnt" target="_blank"
+          <a href="https://line.me/R/ti/p/@931prrnt" target="_blank" rel="noopener noreferrer"
             className="btn bg-green-500 text-white font-bold px-6 py-3 hover:bg-green-600">
             <MessageCircle size={20}/> แชท LINE ฟรี
           </a>
