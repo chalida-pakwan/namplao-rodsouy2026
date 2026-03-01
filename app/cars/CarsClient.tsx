@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { cars as allCars, type Car } from '@/data/cars';
 import CarCard from '@/components/CarCard';
@@ -35,6 +35,7 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
   const [cars, setCars] = useState<Car[]>(sourceCars);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState<string>('default');
 
   const pendingRestoreRef = useRef<ReturnState | null>(null);
   const didRestoreRef = useRef(false);
@@ -103,9 +104,6 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
     });
   }, [cars.length, currentPage]);
 
-  const totalPages = Math.ceil(cars.length / ITEMS_PER_PAGE);
-  const paginatedCars = cars.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
-
   const handleNavigateToCar = () => {
     if (typeof window === 'undefined') return;
     try {
@@ -130,7 +128,31 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
   const handleFiltered = (list: Car[]) => {
     setCars(list);
     setCurrentPage(1);
+    setSortBy('default'); // Reset sort when filter changes
   };
+
+  // Sort the current cars list before paginating
+  const sortedCars = useMemo(() => {
+    const list = [...cars];
+    switch (sortBy) {
+      case 'price-asc':
+        return list.sort((a, b) => a.price - b.price);
+      case 'price-desc':
+        return list.sort((a, b) => b.price - a.price);
+      case 'year-desc':
+        return list.sort((a, b) => {
+          // Extract year from title (e.g. "Toyota Vios 2018") as a fallback if you add year to the data model later
+          const yearA = parseInt(a.title.match(/(20\d{2})/)?.[0] || '0');
+          const yearB = parseInt(b.title.match(/(20\d{2})/)?.[0] || '0');
+          return yearB - yearA;
+        });
+      default:
+        return list; // Keep original (usually newest first based on your data)
+    }
+  }, [cars, sortBy]);
+
+  const totalPages = Math.ceil(sortedCars.length / ITEMS_PER_PAGE);
+  const paginatedCars = sortedCars.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <div className="mt-0">
@@ -170,22 +192,68 @@ export default function CarsClient({ initialCars = [] }: { initialCars?: Car[] }
         <PageBreadcrumb items={[{ label: 'รถสวยพร้อมขาย' }]} />
       </section>
 
-      {/* Filters */}
+      {/* Filters & Sort */}
       <div className="container-responsive mt-4 sm:mt-6">
-        <Filters cars={sourceCars} onFiltered={handleFiltered} />
+        <div className="flex flex-col md:flex-row gap-4 items-start md:items-end justify-between mb-4">
+          <div className="w-full md:w-3/4">
+            <Filters cars={sourceCars} onFiltered={handleFiltered} />
+          </div>
+          <div className="w-full md:w-1/4 min-w-[200px] shrink-0">
+             <label htmlFor="sort" className="block text-xs font-bold text-slate-500 mb-1.5 uppercase tracking-wide">
+                จัดเรียงจาก
+             </label>
+             <div className="relative">
+               <select
+                 id="sort"
+                 value={sortBy}
+                 onChange={(e) => setSortBy(e.target.value)}
+                 className="w-full appearance-none bg-white border border-slate-200 text-slate-700 py-[14px] pl-4 pr-10 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:border-brand-blue transition-all cursor-pointer font-medium text-sm sm:text-base h-[54px]"
+               >
+                 <option value="default">แนะนำล่าสุด</option>
+                 <option value="price-asc">ราคา: ต่ำไปสูง</option>
+                 <option value="price-desc">ราคา: สูงไปต่ำ</option>
+                 <option value="year-desc">ปีผลิต: ใหม่ล่าสุด</option>
+               </select>
+               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
+                 <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                 </svg>
+               </div>
+             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* State: Results Info */}
+      <div className="container-responsive mb-4 flex justify-between items-center bg-slate-50 p-4 rounded-xl border border-slate-100">
+         <span className="text-sm md:text-base text-slate-600 font-medium whitespace-nowrap overflow-hidden text-ellipsis">พบรถ <strong>{sortedCars.length}</strong> คัน</span>
+         {sortedCars.length === 0 && (
+           <button onClick={() => { setCars(sourceCars); setSortBy('default'); }} className="text-sm md:text-base text-brand-blue font-bold hover:underline bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm ml-2 shrink-0">
+             ล้างการค้นหา
+           </button>
+         )}
       </div>
 
       {/* Grid */}
-      <div className="container-responsive mt-4 sm:mt-6 min-h-[500px]">
+      <div className="container-responsive min-h-[500px] mb-8">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
-          {paginatedCars.map(c => <CarCard key={c.id} car={c} onNavigate={handleNavigateToCar} />)}
-          {cars.length === 0 && (
-            <div className="col-span-full text-center py-16 text-slate-500">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-slate-100 flex items-center justify-center">
-                <CarIcon size={32} className="text-slate-400"/>
-              </div>
-              <p className="font-bold text-lg">ไม่พบรถตามเงื่อนไข</p>
-              <p className="text-sm mt-2">ลองเปลี่ยนเงื่อนไขการค้นหา หรือ <Link href="/contact" className="text-brand-blue underline">ติดต่อเรา</Link> เพื่อสอบถาม</p>
+          {paginatedCars.map((c, index) => <CarCard key={c.id} car={c} onNavigate={handleNavigateToCar} priority={index < 4} />)}
+          {sortedCars.length === 0 && (
+            <div className="col-span-full text-center py-20 text-slate-500 bg-white rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center">
+              <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-5 text-slate-300">
+               <CarIcon size={40} />
+             </div>
+             <h3 className="text-xl font-bold text-slate-800 mb-2">ไม่พบรถที่คุณต้องการ</h3>
+             <p className="text-slate-500 mb-6 text-sm md:text-base max-w-sm">ลองปรับเปลี่ยนตัวกรอง (เช่น ยี่ห้อ หรือราคา) หรือดูรถทั้งหมดเพื่อเริ่มต้นใหม่</p>
+             <button 
+               onClick={() => {
+                 setCars(sourceCars);
+                 setSortBy('default');
+               }}
+               className="btn bg-brand-dark text-white px-8 py-3 text-sm md:text-base rounded-full hover:bg-slate-800 transition-colors shadow-md font-bold"
+             >
+               ดูรถทั้งหมดที่มี
+             </button>
             </div>
           )}
         </div>

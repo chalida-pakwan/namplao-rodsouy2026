@@ -39,9 +39,12 @@ export default function CarCard({ car, priority = false, onNavigate }: CarCardPr
           alt={car.title} 
           fill 
           priority={priority}
+          loading={priority ? "eager" : "lazy"}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          quality={50}
+          quality={75}
           className="object-cover transition-transform duration-300 group-hover:scale-105" 
+          placeholder="blur"
+          blurDataURL="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgMzAwIiBmaWxsPSIjZmVmZWZlIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIvPjwvc3ZnPg=="
         />
         {car.sold && (
           <div className="absolute top-2 right-2 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-md z-10 animate-in fade-in zoom-in duration-300">
