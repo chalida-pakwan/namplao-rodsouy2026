@@ -63,7 +63,6 @@ export function buildMetadata(input: SeoInput): Metadata {
       description: input.description,
       images: [image],
     },
-    icons: { icon: '/images/logo.ico', apple: '/images/logo.ico' },
     manifest: '/site.webmanifest',
     robots: input.noIndex
       ? {
