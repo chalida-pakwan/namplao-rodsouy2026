@@ -232,20 +232,29 @@ export default function PaymentCalculatorClient() {
                 </p>
               </div>
 
-              <div className="mt-5 grid grid-cols-2 gap-2">
+              <div className="mt-5">
                 <a
                   href="https://line.me/R/ti/p/@931prrnt"
                   target="_blank"
-                  className="btn bg-green-500 text-white font-bold justify-center hover:bg-green-600"
+                  className="w-full btn bg-green-500 text-white font-bold justify-center hover:bg-green-600 shadow-md shadow-green-500/20 py-3 text-lg animate-pulse"
                 >
-                  <MessageCircle size={16} /> ทัก LINE
+                  <MessageCircle size={20} /> แคปหน้าจอนี้ ส่งประเมินจัดไฟแนนซ์ฟรี!
                 </a>
-                <a
-                  href="tel:0947251267"
-                  className="btn bg-brand-yellow text-brand-dark font-bold justify-center hover:bg-yellow-300"
-                >
-                  <Phone size={16} /> โทรเลย
-                </a>
+                <div className="grid grid-cols-2 gap-2 mt-3 sm:hidden">
+                   <a
+                    href="https://line.me/R/ti/p/@931prrnt"
+                    target="_blank"
+                    className="btn bg-slate-100 text-slate-700 font-bold justify-center hover:bg-slate-200"
+                  >
+                     แชท LINE
+                  </a>
+                  <a
+                    href="tel:0947251267"
+                    className="btn bg-brand-yellow text-brand-dark font-bold justify-center hover:bg-yellow-300"
+                  >
+                    <Phone size={16} /> 094-725-1267
+                  </a>
+                </div>
               </div>
 
               <div className="mt-4 text-center">
@@ -253,6 +262,65 @@ export default function PaymentCalculatorClient() {
                   ดูรถทั้งหมด →
                 </Link>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SEO Content / FAQ Section */}
+      <section className="container-responsive py-12">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+            <h2 className="text-2xl font-bold text-slate-800 mb-6 border-b border-slate-200 pb-4">
+              คำถามที่พบบ่อย (FAQ) เกี่ยวกับการจัดไฟแนนซ์รถยนต์มือสอง
+            </h2>
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold text-brand-dark flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center text-sm font-bold">1</div>
+                  ใช้เอกสารอะไรบ้างในการจัดไฟแนนซ์?
+                </h3>
+                <p className="text-slate-600 pl-8 leading-relaxed">
+                  โดยทั่วไปจะใช้บัตรประชาชน ทะเบียนบ้าน สลิปเงินเดือน (หรือหนังสือรับรองเงินเดือน) และสเตทเมนท์ย้อนหลัง 6 เดือน
+                  หากเป็นเจ้าของกิจการจะใช้ทะเบียนการค้าหรือเอกสารรับรองบริษัทแทนสลิปเงินเดือน
+                </p>
+              </div>
+              
+              <div>
+                <h3 className="text-lg font-semibold text-brand-dark flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center text-sm font-bold">2</div>
+                  ติดเครดิตบูโร (แบล็คลิสต์) สามารถจัดไฟแนนซ์ได้ไหม?
+                </h3>
+                <p className="text-slate-600 pl-8 leading-relaxed">
+                  มีโอกาสจัดได้ครับ ทางร้าน &quot;น้ำเปล่ารถสวย&quot; มีประสบการณ์ในการดันเคสและมีไฟแนนซ์พันธมิตรที่รองรับลูกค้าที่เคยมีประวัติล่าช้า
+                  แนะนำให้ <a href="https://line.me/R/ti/p/@931prrnt" target="_blank" className="text-brand-blue hover:underline font-semibold">ปรึกษาเซลล์ผ่าน LINE</a> เพื่อหาทางออกที่ดีที่สุดให้ครับ ดันทุกเคส!
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-brand-dark flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center text-sm font-bold">3</div>
+                  ต้องใช้เงินดาวน์เท่าไหร่?
+                </h3>
+                <p className="text-slate-600 pl-8 leading-relaxed">
+                  ทางร้านมีโปรโมชั่น <strong className="text-brand-blue">&quot;ฟรีดาวน์&quot;</strong> สำหรับรถหลายรุ่น (ขึ้นอยู่กับเครดิตของผู้ซื้อและเงื่อนไขของไฟแนนซ์)
+                  หากเครดิตดี ไม่ต้องใช้เงินออกรถเลยแม้แต่บาทเดียวครับ
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-brand-dark flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center text-sm font-bold">4</div>
+                  ใช้เวลาอนุมัตินานแค่ไหน?
+                </h3>
+                <p className="text-slate-600 pl-8 leading-relaxed">
+                  หากเอกสารครบถ้วนตามที่ไฟแนนซ์กำหนด จะทราบผลอนุมัติภายใน 1-3 วันทำการครับ เซลล์ของเราจะคอยติดตามและแจ้งความคืบหน้าให้ทราบตลอด
+                </p>
+              </div>
+            </div>
+            
+            <div className="mt-8 pt-6 border-t border-slate-200 text-sm text-slate-500 text-center">
+              หมายเหตุ: การคำนวณข้างต้นเป็นการประมาณการเบื้องต้นเท่านั้น ตัวเลขจริงอาจมีการเปลี่ยนแปลงขึ้นอยู่กับไฟแนนซ์และปีของรถ กรุณาสอบถามรายละเอียดเพิ่มเติมกับเจ้าหน้าที่
             </div>
           </div>
         </div>
