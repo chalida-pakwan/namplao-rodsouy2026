@@ -86,11 +86,11 @@ export default function HomePage() {
 
       {/* ─── Hero Text Block ─── */}
       <section className="w-full bg-white">
-        <div className="container-responsive pt-6 pb-8 sm:pt-8 sm:pb-10">
+        <div className="container-responsive pt-6 pb-4 sm:pt-8 sm:pb-6">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 relative">
             
             {/* Left: headline */}
-            <div className="w-full lg:w-2/3">
+            <div className="w-full">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 leading-tight">
                 น้ำเปล่ารถสวย<span className="sr-only"> รถมือสองเชียงใหม่</span>
                 <span className="block text-brand-blue">รถบ้านคัดพิเศษ</span>
@@ -101,64 +101,29 @@ export default function HomePage() {
               </p>
               
               {/* Buttons */}
-              <div className="flex flex-wrap gap-3 mt-6">
+              <div className="flex flex-row sm:flex-wrap gap-2 sm:gap-3 mt-6 pb-1">
                 <Link href="/cars"
-                  className="btn bg-brand-blue text-white font-bold px-6 py-3 text-sm sm:text-base hover:bg-brand-dark transition-colors shadow-lg shadow-brand-blue/30 rounded-full flex items-center justify-center gap-1.5">
-                  <Car size={18}/> เลือกซื้อรถยนต์
+                  className="btn flex-[1.2] sm:flex-none bg-brand-blue text-white font-bold px-1 py-3 text-xs sm:text-base sm:px-6 hover:bg-brand-dark transition-colors shadow-lg shadow-brand-blue/30 rounded-full flex items-center justify-center gap-1 sm:gap-1.5 whitespace-nowrap">
+                  <Car size={16} className="shrink-0 sm:hidden"/><Car size={18} className="shrink-0 hidden sm:block"/><span className="inline sm:hidden">ซื้อรถ</span><span className="hidden sm:inline">เลือกซื้อรถยนต์</span>
                 </Link>
                 <Link href="/sell-car"
-                  className="btn bg-brand-yellow text-gray-900 font-bold px-6 py-3 text-sm sm:text-base hover:brightness-95 transition-all shadow-lg shadow-brand-yellow/30 rounded-full flex items-center justify-center gap-1.5">
-                  <Wallet size={18}/> ฝากขายรถ
+                  className="btn flex-1 sm:flex-none bg-brand-yellow text-gray-900 font-bold px-1 py-3 text-xs sm:text-base sm:px-6 hover:brightness-95 transition-all shadow-lg shadow-brand-yellow/30 rounded-full flex items-center justify-center gap-1 sm:gap-1.5 whitespace-nowrap">
+                  <Wallet size={16} className="shrink-0 sm:hidden"/><Wallet size={18} className="shrink-0 hidden sm:block"/><span className="inline">ฝากขายรถ</span>
                 </Link>
                 <a href="tel:0947251267"
-                  className="btn bg-white text-brand-blue font-bold px-6 py-3 text-sm sm:text-base border-2 border-brand-blue hover:bg-brand-blue hover:text-white transition-colors rounded-full flex items-center justify-center gap-1.5">
-                  <Phone size={18}/> โทรเลย
+                  className="btn flex-1 sm:flex-none bg-white text-brand-blue font-bold px-1 py-3 text-xs sm:text-base sm:px-6 border-2 border-brand-blue hover:bg-brand-blue hover:text-white transition-colors rounded-full flex items-center justify-center gap-1 sm:gap-1.5 whitespace-nowrap">
+                  <Phone size={16} className="shrink-0 sm:hidden"/><Phone size={18} className="shrink-0 hidden sm:block"/><span className="inline">โทรเลย</span>
                 </a>
               </div>
             </div>
 
-            {/* Right: Badge aligned with title */}
-            <div className="mt-4 lg:mt-0 lg:ml-auto flex justify-center lg:justify-end">
-               <div className="inline-flex items-center gap-3 px-4 py-2">
-                  <div className="text-brand-blue">
-                    <Shield size={28} className="drop-shadow-sm" />
-                  </div>
-                  <div className="text-left">
-                     <div className="text-lg sm:text-xl font-bold text-gray-800 drop-shadow-sm leading-tight">รถมือสองเชียงใหม่</div>
-                     <div className="text-sm sm:text-base text-gray-600 font-medium">คุณภาพระดับพรีเมียม</div>
-                  </div>
-               </div>
-            </div>
-            
           </div>
 
 
         </div>
       </section>
-
-      {/* ─── Why Us ─── */}
-      <section className="container-responsive mt-12 sm:mt-16">
-        <div className="text-center mb-6 sm:mb-8">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-brand-dark">ทำไมต้องเลือกน้ำเปล่ารถสวย?</h2>
-          <p className="text-slate-500 mt-2 text-sm">ศูนย์รวมรถบ้านคุณภาพดี คัดสรรคุณภาพทุกคัน ตรวจสอบโดยผู้เชี่ยวชาญ</p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-          {whyUs.map(f => (
-            <div key={f.title} className="rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-200 p-4 sm:p-5 flex gap-3 sm:gap-4 items-start bg-brand-blue border-brand-blue/30">
-              <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
-                <f.icon size={22} className="text-white drop-shadow-md" />
-              </div>
-              <div>
-                <div className="font-bold text-white text-base sm:text-lg mb-0.5">{f.title}</div>
-                <p className="text-sm text-blue-50 leading-snug">{f.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* ─── Featured Cars ─── */}
-      <section className="container-responsive mt-8 sm:mt-10">
+      <section className="container-responsive mt-6 sm:mt-8">
         <div className="flex items-center justify-between mb-4 sm:mb-6">
           <div>
             <h2 className="text-xl sm:text-2xl font-black text-brand-dark">รถแนะนำเข้าใหม่</h2>
@@ -239,6 +204,28 @@ export default function HomePage() {
               <Car size={18} /> ดูรถทั้งหมดในสต็อก
             </Link>
           </div>
+        </div>
+      </section>
+
+
+      {/* ─── Why Us ─── */}
+      <section className="container-responsive mt-12 sm:mt-16">
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-brand-dark">ทำไมต้องเลือกน้ำเปล่ารถสวย?</h2>
+          <p className="text-slate-500 mt-2 text-sm">ศูนย์รวมรถบ้านคุณภาพดี คัดสรรคุณภาพทุกคัน ตรวจสอบโดยผู้เชี่ยวชาญ</p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+          {whyUs.map(f => (
+            <div key={f.title} className="rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-200 p-4 sm:p-5 flex gap-3 sm:gap-4 items-start bg-brand-blue border-brand-blue/30">
+              <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                <f.icon size={22} className="text-white drop-shadow-md" />
+              </div>
+              <div>
+                <div className="font-bold text-white text-base sm:text-lg mb-0.5">{f.title}</div>
+                <p className="text-sm text-blue-50 leading-snug">{f.desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
