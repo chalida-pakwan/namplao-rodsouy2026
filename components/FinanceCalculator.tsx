@@ -8,7 +8,7 @@ export default function FinanceCalculator({price}:Props) {
   const [downPct, setDownPct] = useState(0); // 0% default for "เครดิตดี"
   const [downAmount, setDownAmount] = useState(0);
   const [months, setMonths] = useState(84); // 7 years
-  const [rate, setRate] = useState(3.49); // example APR
+  const [rate, setRate] = useState(4.50); // example APR
   const [age, setAge] = useState(30);
   const [isAmountMode, setIsAmountMode] = useState(false);
 
@@ -51,6 +51,9 @@ export default function FinanceCalculator({price}:Props) {
     return Math.ceil(monthlyBase + monthlyVat); 
   }, [loan, months, rate, insuranceRate]);
 
+
+  // Array of interest rates based on main calculator
+  const interestRates = [4.50, 5.00, 5.50, 6.00, 6.50, 7.00, 7.50, 8.00, 8.50, 9.00];
 
   return (
     <div className="bg-transparent">
@@ -128,13 +131,18 @@ export default function FinanceCalculator({price}:Props) {
           <div>
             <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wide block mb-1.5 px-1">ดบ. (%)</label>
             <div className="relative">
-              <input 
-                type="number" 
-                step="0.1" 
-                className="w-full bg-white border border-slate-200 text-slate-900 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all" 
+              <select 
+                className="w-full bg-white border border-slate-200 text-slate-900 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all appearance-none cursor-pointer" 
                 value={rate} 
-                onChange={e => setRate(Number(e.target.value))} 
-              />
+                onChange={e => setRate(Number(e.target.value))}
+              >
+                {interestRates.map(r => (
+                  <option key={r} value={r}>{r.toFixed(2)}%</option>
+                ))}
+              </select>
+              <div className="absolute right-3 top-3 pointer-events-none text-slate-400">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+              </div>
             </div>
           </div>
         </div>

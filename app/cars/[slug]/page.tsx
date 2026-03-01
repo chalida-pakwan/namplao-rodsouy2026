@@ -234,7 +234,7 @@ export default async function CarDetail({ params }: { params: { slug: string } }
                  <span className="w-1.5 h-6 bg-brand-primary rounded-full"></span>
                  ประเมินยอดจัดไฟแนนซ์
                </h3>
-               <span className="text-xs text-brand-primary bg-brand-primary/10 px-2 py-1 rounded-md font-medium">ดอกเบี้ยเริ่มต้น 2.79%</span>
+               <span className="text-xs text-brand-primary bg-brand-primary/10 px-2 py-1 rounded-md font-medium">ดอกเบี้ยเริ่มต้น 4.50%</span>
              </div>
              <div className="p-5 lg:p-6 relative z-10">
                 <FinanceCalculator price={car.price} />
