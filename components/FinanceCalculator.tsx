@@ -53,71 +53,72 @@ export default function FinanceCalculator({price}:Props) {
 
 
   return (
-    <div className="card p-4 bg-slate-50 border border-slate-200">
-      <h2 className="font-bold text-brand-dark text-lg mb-4 flex items-center gap-2">
-        <span className="w-1 h-5 bg-brand-yellow rounded-full"></span>
-        คำนวณค่างวดเบื้องต้น
-      </h2>
-      <div className="grid grid-cols-1 gap-4">
+    <div className="bg-transparent">
+      <div className="grid grid-cols-1 gap-5">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <div className="flex justify-between items-baseline mb-1">
-              <label className="text-xs font-bold text-slate-500 uppercase">เงินดาวน์</label>
+            <div className="flex justify-between items-baseline mb-1.5 px-1">
+              <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">เงินดาวน์</label>
               <button 
                 onClick={() => setIsAmountMode(!isAmountMode)}
-                className="text-[10px] text-brand-blue underline"
+                className="text-[10px] text-brand-blue font-bold px-2 py-0.5 rounded-full bg-brand-blue/10 hover:bg-brand-blue/20 transition-colors"
               >
-                {isAmountMode ? 'กรอก %' : 'กรอกบาท'}
+                {isAmountMode ? 'สลับเป็น %' : 'สลับเป็น (บาท)'}
               </button>
             </div>
-            <div className="relative">
+            <div className="relative group">
               {isAmountMode ? (
                 <>
                   <input 
                     type="number" 
-                    className="input pr-8 text-sm" 
+                    className="w-full bg-white border border-slate-200 text-slate-900 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all" 
                     value={downAmount > 0 ? downAmount : ''} 
                     onChange={e => handleDownAmountChange(Number(e.target.value))} 
                     placeholder="0"
                   />
-                  <span className="absolute right-3 top-2.5 text-xs text-slate-400">฿</span>
+                  <span className="absolute right-4 top-[10px] text-xs font-bold text-slate-400 select-none">฿</span>
                 </>
               ) : (
                 <>
                   <input 
                     type="number" 
-                    className="input pr-8 text-sm" 
+                    className="w-full bg-white border border-slate-200 text-slate-900 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all" 
                     value={downPct > 0 ? parseFloat(downPct.toFixed(1)) : ''} 
                     onChange={e => handleDownPctChange(Number(e.target.value))} 
                     min={0} max={100}
                     placeholder="0"
                   />
-                  <span className="absolute right-3 top-2.5 text-xs text-slate-400">%</span>
+                  <span className="absolute right-4 top-[10px] text-xs font-bold text-slate-400 select-none">%</span>
                 </>
               )}
             </div>
           </div>
           <div>
-            <label className="text-xs font-bold text-slate-500 uppercase">ระยะผ่อน</label>
-            <select 
-              className="input mt-1 text-sm appearance-none" 
-              value={months} 
-              onChange={e => setMonths(Number(e.target.value))}
-            >
-              {[48, 60, 72, 84].map(m => (
-                <option key={m} value={m}>{m} งวด ({m/12} ปี)</option>
-              ))}
-            </select>
+            <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wide block mb-1.5 px-1">ระยะผ่อน</label>
+            <div className="relative">
+              <select 
+                className="w-full bg-white border border-slate-200 text-slate-900 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all appearance-none cursor-pointer" 
+                value={months} 
+                onChange={e => setMonths(Number(e.target.value))}
+              >
+                {[48, 60, 72, 84].map(m => (
+                  <option key={m} value={m}>{m} งวด ({m/12} ปี)</option>
+                ))}
+              </select>
+              <div className="absolute right-3 top-3 pointer-events-none text-slate-400">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="text-xs font-bold text-slate-500 uppercase">อายุกู้(ปี)</label>
-            <div className="relative mt-1">
+            <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wide block mb-1.5 px-1">อายุกู้ (ปี)</label>
+            <div className="relative">
               <input 
                 type="number" 
-                className="input pr-4 text-sm" 
+                className="w-full bg-white border border-slate-200 text-slate-900 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all" 
                 value={age} 
                 onChange={e => setAge(Number(e.target.value))} 
                 min={18} max={80}
@@ -125,12 +126,12 @@ export default function FinanceCalculator({price}:Props) {
             </div>
           </div>
           <div>
-            <label className="text-xs font-bold text-slate-500 uppercase">ดบ.(%)</label>
-            <div className="relative mt-1">
+            <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wide block mb-1.5 px-1">ดบ. (%)</label>
+            <div className="relative">
               <input 
                 type="number" 
                 step="0.1" 
-                className="input text-sm" 
+                className="w-full bg-white border border-slate-200 text-slate-900 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all" 
                 value={rate} 
                 onChange={e => setRate(Number(e.target.value))} 
               />
@@ -138,16 +139,16 @@ export default function FinanceCalculator({price}:Props) {
           </div>
         </div>
 
-        <div className="flex flex-col justify-end mt-2">
-          <div className="bg-brand-blue text-white rounded-lg p-4 text-center shadow-lg transform scale-100 transition-transform">
-            <div className="text-sm opacity-90 mb-1">ค่างวดต่อเดือน (รวม VAT)</div>
-            <div className="text-2xl sm:text-3xl font-black tracking-tight">{formatPriceTHB(monthly)}</div>
+        <div className="mt-3">
+          <div className="relative overflow-hidden bg-brand-blue/5 border border-brand-blue/20 rounded-2xl p-5 text-center shadow-inner group transition-all duration-300 hover:bg-brand-blue/10">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-brand-blue/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+            <div className="text-[13px] text-brand-dark/70 font-semibold mb-1 relative z-10">ค่างวดต่อเดือนโดยประมาณ (รวม VAT 7%)</div>
+            <div className="text-3xl sm:text-4xl font-black text-brand-blue tracking-tight drop-shadow-sm relative z-10 flex items-center justify-center gap-2">
+              <span className="text-lg font-bold text-brand-blue/50">~</span>{formatPriceTHB(monthly)}
+            </div>
           </div>
         </div>
       </div>
-      <p className="text-[10px] text-slate-400 mt-4 leading-relaxed">
-        * คำนวณแบบ Flat Rate รวมภาษีมูลค่าเพิ่ม 7% อัตราดอกเบี้ยและยอดจัดจริงขึ้นอยู่กับเครดิตของลูกค้า
-      </p>
     </div>
   )
 }

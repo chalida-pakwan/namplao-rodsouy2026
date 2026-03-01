@@ -119,16 +119,17 @@ export default function CarGallery({ images, title }: CarGalleryProps) {
 
       {/* Main Image Stage */}
       <div 
-        className="relative w-full aspect-[4/3] sm:aspect-[16/10] bg-slate-900 rounded-xl overflow-hidden group cursor-pointer"
+        className="relative w-full aspect-[4/3] sm:aspect-[16/10] bg-slate-900 rounded-2xl overflow-hidden group cursor-pointer shadow-sm border border-slate-100"
         onClick={() => openLightbox(selectedIndex)}
       >
         <Image
           src={images[selectedIndex]}
           alt={`${title} - View ${selectedIndex + 1}`}
           fill
-          className="object-contain sm:object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-contain sm:object-cover transition-transform duration-700 group-hover:scale-[1.02]"
           priority
-          sizes="(max-width: 768px) 100vw, 800px"
+          quality={85}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 800px"
         />
         
         {/* Zoom HInt */}
