@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import Script from 'next/script';
 import { Phone, MessageCircle, MapPin, Clock, Facebook } from 'lucide-react';
 import ContactForm from "@/components/ContactForm";
 import { buildMetadata } from '@/lib/seo';
@@ -30,7 +31,7 @@ const contacts = [
     icon: Facebook,
     title: 'Facebook',
     value: 'น้ำเปล่ารถสวย',
-    href: 'https://www.facebook.com',
+    href: 'https://www.facebook.com/chalidaonline.2020',
     color: 'bg-indigo-50 text-indigo-600',
   },
   {
@@ -50,8 +51,56 @@ const contacts = [
 ];
 
 export default function ContactPage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'AutoDealer',
+    name: 'น้ำเปล่ารถสวย',
+    image: 'https://www.namplao-usedcars.com/images/contact.webp',
+    '@id': 'https://www.namplao-usedcars.com/contact',
+    url: 'https://www.namplao-usedcars.com/contact',
+    telephone: '+66947251267',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'เชียงใหม่', // สามารถใส่ที่อยู่เต็มได้ถ้ามี
+      addressLocality: 'เมืองเชียงใหม่',
+      addressRegion: 'เชียงใหม่',
+      postalCode: '50000',
+      addressCountry: 'TH'
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 18.804924,
+      longitude: 99.030168
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: [
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+          'Sunday'
+        ],
+        opens: '09:00',
+        closes: '18:00'
+      }
+    ],
+    sameAs: [
+      'https://www.facebook.com/chalidaonline.2020',
+      'https://line.me/R/ti/p/@931prrnt'
+    ]
+  };
+
   return (
     <div className="mt-0">
+      <Script
+        id="local-business-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <section className="relative w-full">
         <Image
@@ -96,6 +145,7 @@ export default function ContactPage() {
                   <p className="text-sm text-slate-500">{c.title}</p>
                   {c.href ? (
                     <a href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined}
+                      rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                       className="font-bold text-brand-dark hover:text-brand-blue transition-colors">
                       {c.value}
                     </a>
@@ -109,7 +159,7 @@ export default function ContactPage() {
 
           {/* Quick CTA */}
           <div className="mt-6 grid grid-cols-2 gap-3">
-            <a href="https://line.me/R/ti/p/@931prrnt" target="_blank"
+            <a href="https://line.me/R/ti/p/@931prrnt" target="_blank" rel="noopener noreferrer"
               className="btn bg-green-500 text-white font-bold py-3 justify-center hover:bg-green-600">
               <MessageCircle size={18}/> ทัก LINE
             </a>
@@ -122,6 +172,7 @@ export default function ContactPage() {
           {/* Map */}
           <div className="mt-6 rounded-xl overflow-hidden shadow-lg border border-slate-200">
             <iframe
+              title="แผนที่แสดงที่ตั้งร้านน้ำเปล่ารถสวย"
               src="https://maps.google.com/maps?q=18.804924,99.030168&hl=th&z=15&output=embed"
               width="100%"
               height="300"
@@ -131,7 +182,7 @@ export default function ContactPage() {
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
             <div className="p-3 bg-white text-center">
-              <a href="https://maps.app.goo.gl/3ZUdPvoKoqjKNXsk7" target="_blank" className="text-sm font-bold text-brand-blue hover:underline flex items-center justify-center gap-1">
+              <a href="https://maps.app.goo.gl/3ZUdPvoKoqjKNXsk7" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-brand-blue hover:underline flex items-center justify-center gap-1">
                 <MapPin size={16}/> เปิดใน Google Maps
               </a>
             </div>
@@ -152,7 +203,7 @@ export default function ContactPage() {
           <div className="mt-4 card p-5 text-center bg-brand-yellow/10 border border-brand-yellow/30">
             <p className="font-bold text-brand-dark">ต้องการคำตอบด่วน?</p>
             <p className="text-sm text-slate-600 mt-1">ทัก LINE ได้เลย ตอบเร็วกว่า!</p>
-            <a href="https://line.me/R/ti/p/@931prrnt" target="_blank"
+            <a href="https://line.me/R/ti/p/@931prrnt" target="_blank" rel="noopener noreferrer"
               className="btn bg-green-500 text-white font-bold px-6 py-2 mt-3 hover:bg-green-600 mx-auto">
               <MessageCircle size={18}/> เปิด LINE
             </a>

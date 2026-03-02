@@ -70,28 +70,28 @@ export default function ContactForm() {
   return (
     <form className="grid md:grid-cols-2 gap-3 mt-3" onSubmit={handleSubmit}>
       <div>
-        <label className="text-sm font-bold text-slate-700">ชื่อ *</label>
-        <input className="input mt-1" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="ชื่อ-นามสกุล" />
+        <label htmlFor="fullName" className="text-sm font-bold text-slate-700">ชื่อ *</label>
+        <input id="fullName" className="input mt-1" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="ชื่อ-นามสกุล" />
       </div>
       <div>
-        <label className="text-sm font-bold text-slate-700">เบอร์โทร *</label>
-        <input className="input mt-1" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="09xxxxxxxx" inputMode="tel" />
+        <label htmlFor="phone" className="text-sm font-bold text-slate-700">เบอร์โทร *</label>
+        <input id="phone" className="input mt-1" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="09xxxxxxxx" inputMode="tel" />
       </div>
 
       <div className="md:col-span-2">
-        <label className="text-sm font-bold text-slate-700">สนใจรถรุ่น... (ไม่บังคับ)</label>
-        <input className="input mt-1" value={interest} onChange={(e) => setInterest(e.target.value)} placeholder="เช่น Toyota Vios 2018" />
+        <label htmlFor="interest" className="text-sm font-bold text-slate-700">สนใจรถรุ่น... (ไม่บังคับ)</label>
+        <input id="interest" className="input mt-1" value={interest} onChange={(e) => setInterest(e.target.value)} placeholder="เช่น Toyota Vios 2018" />
       </div>
 
       <div className="md:col-span-2">
-        <label className="text-sm font-bold text-slate-700">รายละเอียดเพิ่มเติม *</label>
-        <textarea className="input mt-1" value={detail} onChange={(e) => setDetail(e.target.value)} placeholder="พิมพ์คำถาม/รายละเอียดที่ต้องการให้เราช่วย" rows={4} />
+        <label htmlFor="detail" className="text-sm font-bold text-slate-700">รายละเอียดเพิ่มเติม *</label>
+        <textarea id="detail" className="input mt-1" value={detail} onChange={(e) => setDetail(e.target.value)} placeholder="พิมพ์คำถาม/รายละเอียดที่ต้องการให้เราช่วย" rows={4} />
       </div>
 
-      <label className="md:col-span-2 flex items-start gap-2 text-sm text-slate-600">
+      <label className="md:col-span-2 flex items-start gap-2 text-sm text-slate-600 cursor-pointer">
         <input
           type="checkbox"
-          className="mt-0.5 w-4 h-4 accent-brand-blue"
+          className="mt-0.5 w-4 h-4 accent-brand-blue cursor-pointer"
           checked={acceptConsent}
           onChange={(e) => setAcceptConsent(e.target.checked)}
         />
@@ -116,7 +116,7 @@ export default function ContactForm() {
               <a className="btn-ghost" href="tel:0947251267">
                 <Phone size={18} /> โทรหาเรา
               </a>
-              <a className="btn-primary" href="https://line.me/R/ti/p/@931prrnt" target="_blank">
+              <a className="btn-primary" href="https://line.me/R/ti/p/@931prrnt" target="_blank" rel="noopener noreferrer">
                 <MessageCircle size={18} /> ทัก LINE
               </a>
             </div>
