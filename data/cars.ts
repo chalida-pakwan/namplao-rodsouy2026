@@ -9,7 +9,7 @@ export type Car = {
   price: number;
   mileageKm: number;
   transmission: 'AT' | 'MT';
-  fuel: 'Diesel' | 'Benzine' | 'Hybrid' | 'EV';
+  fuel: 'Diesel' | 'Benzine' | 'Hybrid' | 'EV' | '';
   drivetrain?: '2WD' | '4WD';
   location: string;
   heroImage: string;

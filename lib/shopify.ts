@@ -62,19 +62,57 @@ function mapShopifyProductToCar(node: any): Car {
   const mileage = mileageStr ? parseInt(mileageStr.replace(/,/g, '')) : 0;
   
   // Transmission
-  const transVal = getMeta('transmission');
+  const transVal = getMeta('transmission') || '';
   let transmission = 'AT'; // default
-  if (transVal && (transVal.toLowerCase().includes('manual') || transVal.toLowerCase().includes('mt') || transVal.includes('ธรรมดา'))) {
+  
+  const transSearchStr = (transVal + ' ' + (node.tags?.join(' ') || '') + ' ' + node.title).toLowerCase();
+  
+  if (transSearchStr.includes('manual') || transSearchStr.includes(' mt ') || transSearchStr.includes('-mt') || transSearchStr.includes(' mt') || transSearchStr.includes('ธรรมดา')) {
       transmission = 'MT';
+  } else if (transSearchStr.includes(' AT ') || transSearchStr.includes('-at') || transSearchStr.includes(' at') || transSearchStr.includes('อัตโนมัติ') || transSearchStr.includes(' auto')) {
+      transmission = 'AT';
   }
 
   // Fuel
-  let fuel = 'Diesel';
-  const fVal = getMeta('fuel_type');
-  if (fVal) {
-      if (fVal.toLowerCase().includes('benzine') || fVal.includes('เบนซิน') || fVal.toLowerCase().includes('gasoline')) fuel = 'Benzine';
-      else if (fVal.toLowerCase().includes('hybrid') || fVal.includes('ไฮบริด')) fuel = 'Hybrid';
-      else if (fVal.toLowerCase().includes('ev') || fVal.includes('ไฟฟ้า')) fuel = 'EV';
+  let fuel = ''; 
+  const fVal = getMeta('fuel_type') || '';
+  const titleLower = node.title.toLowerCase();
+  const tagsLower = (node.tags?.join(' ') || '').toLowerCase();
+  // Combine for general searching
+  const searchStr = (fVal + ' ' + tagsLower + ' ' + titleLower).toLowerCase();
+
+  // 1. Priority: Check known car models that are almost exclusively Diesel (unless explicit Benzine)
+  const isDieselModel = [
+    'isuzu', 'd-max', 'mu-x', 
+    'hilux', 'revo', 'vigo', 'rocco', 
+    'ranger', 'raptor', 'everest',
+    'triton', 'pajero',
+    'navara', 'terra',
+    'colorado', 'trailblazer',
+    'bt-50',
+    'fortuner'
+  ].some(keyword => titleLower.includes(keyword) || tagsLower.includes(keyword));
+
+  // Check if it's explicitly Benzine (e.g. Hilux 2.7, Fortuner 2.7)
+  const isExplicitBenzine = 
+    titleLower.includes('2.7') || 
+    titleLower.includes('benzine') || 
+    titleLower.includes('เบนซิน') ||
+    tagsLower.includes('benzine') ||
+    tagsLower.includes('เบนซิน');
+
+  if (isDieselModel && !isExplicitBenzine) {
+      fuel = 'Diesel';
+  } 
+  // 2. Standard Detection from keywords
+  else if (searchStr.includes('diesel') || searchStr.includes('ดีเซล')) {
+    fuel = 'Diesel';
+  } else if (searchStr.includes('hybrid') || searchStr.includes('ไฮบริด') || searchStr.includes('phev')) {
+    fuel = 'Hybrid';
+  } else if (searchStr.includes('ev') || searchStr.includes('ไฟฟ้า') || searchStr.includes('electric')) {
+    fuel = 'EV';
+  } else if (searchStr.includes('benzine') || searchStr.includes('เบนซิน') || searchStr.includes('เบนซิล') || searchStr.includes('gasoline') || searchStr.includes('petrol') || searchStr.includes('gasohol') || searchStr.includes('แก๊สโซฮอล์')) {
+    fuel = 'Benzine';
   }
 
   // Drivetrain
@@ -136,6 +174,7 @@ export async function getCarBySlug(slug: string): Promise<Car | null> {
           {namespace: "custom", key: "mileage"},
           {namespace: "custom", key: "transmission"},
           {namespace: "custom", key: "fuel_type"},
+          {namespace: "custom", key: "fuel"},
           {namespace: "custom", key: "drive_system"},
           {namespace: "custom", key: "color"},
           {namespace: "custom", key: "car_type"}
@@ -191,6 +230,7 @@ export async function getCars() {
               {namespace: "custom", key: "mileage"},
               {namespace: "custom", key: "transmission"},
               {namespace: "custom", key: "fuel_type"},
+              {namespace: "custom", key: "fuel"},
               {namespace: "custom", key: "drive_system"},
               {namespace: "custom", key: "color"},
               {namespace: "custom", key: "car_type"}

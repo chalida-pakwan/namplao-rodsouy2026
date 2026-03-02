@@ -76,8 +76,8 @@ export default async function CarDetail({ params }: { params: { slug: string } }
       value: car.mileageKm,
       unitCode: 'KMT'
     },
-    vehicleTransmission: transmissionMap[car.transmission],
-    fuelType: fuelMap[car.fuel],
+    vehicleTransmission: car.transmission ? transmissionMap[car.transmission] : undefined,
+    fuelType: car.fuel ? fuelMap[car.fuel] : undefined,
     offers: {
       '@type': 'Offer',
       price: car.price,
@@ -196,15 +196,17 @@ export default async function CarDetail({ params }: { params: { slug: string } }
                     <span className="font-bold text-slate-800">{car.year}</span>
                   </div>
                </div>
-               <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-slate-50/80 border border-slate-100 hover:bg-slate-50 transition-colors group">
-                  <div className="bg-white p-2.5 rounded-xl shadow-sm group-hover:scale-110 transition-transform">
-                     <Gauge className="text-brand-primary w-5 h-5 shrink-0" />
-                  </div>
-                  <div>
-                    <span className="text-[11px] text-slate-400 block font-bold uppercase tracking-wide mb-0.5">เลขไมล์เฉลี่ย</span>
-                    <span className="font-bold text-slate-800">{formatNumber(car.mileageKm)} กม.</span>
-                  </div>
-               </div>
+               {car.mileageKm > 0 && (
+                 <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-slate-50/80 border border-slate-100 hover:bg-slate-50 transition-colors group">
+                    <div className="bg-white p-2.5 rounded-xl shadow-sm group-hover:scale-110 transition-transform">
+                       <Gauge className="text-brand-primary w-5 h-5 shrink-0" />
+                    </div>
+                    <div>
+                      <span className="text-[11px] text-slate-400 block font-bold uppercase tracking-wide mb-0.5">เลขไมล์</span>
+                      <span className="font-bold text-slate-800">{formatNumber(car.mileageKm)} กม.</span>
+                    </div>
+                 </div>
+               )}
                <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-slate-50/80 border border-slate-100 hover:bg-slate-50 transition-colors group">
                   <div className="bg-white p-2.5 rounded-xl shadow-sm group-hover:scale-110 transition-transform">
                      <Cog className="text-brand-primary w-5 h-5 shrink-0" />
@@ -220,7 +222,9 @@ export default async function CarDetail({ params }: { params: { slug: string } }
                   </div>
                   <div>
                     <span className="text-[11px] text-slate-400 block font-bold uppercase tracking-wide mb-0.5">เชื้อเพลิง</span>
-                    <span className="font-bold text-slate-800">{fuelMap[car.fuel]}</span>
+                    <span className="font-bold text-slate-800">
+                      {car.fuel && fuelMap[car.fuel as keyof typeof fuelMap] ? fuelMap[car.fuel as keyof typeof fuelMap] : '-'}
+                    </span>
                   </div>
                </div>
             </div>

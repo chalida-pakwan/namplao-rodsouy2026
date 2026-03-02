@@ -40,7 +40,7 @@ export default function ShareButtons({ title, url }: { title: string, url: strin
 
           {/* LINE */}
           <a
-            href={`https://social-plugins.line.me/lineit/share?url=${encodedUrl}`}
+            href={`https://line.me/R/msg/text/?${encodeURIComponent(title + ' ' + url)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-[#06C755] text-white hover:bg-[#05b34c] transition-all flex-1 shadow-sm font-medium text-xs sm:text-sm"

@@ -64,15 +64,19 @@ export default function CarCard({ car, priority = false, onNavigate }: CarCardPr
           <span className="inline-flex items-center gap-1" title="ปีรถ">
             <Calendar size={14} className="text-brand-primary shrink-0"/> {car.year}
           </span>
-          <span className="inline-flex items-center gap-1" title="เลขไมล์">
-            <Gauge size={14} className="text-brand-primary shrink-0"/> {formatNumber(car.mileageKm)}
-          </span>
+          {car.mileageKm > 0 && (
+            <span className="inline-flex items-center gap-1" title="เลขไมล์">
+              <Gauge size={14} className="text-brand-primary shrink-0"/> {formatNumber(car.mileageKm)}
+            </span>
+          )}
           <span className="inline-flex items-center gap-1" title="ระบบเกียร์">
             <Cog size={14} className="text-brand-primary shrink-0"/> {transmissionMap[car.transmission]}
           </span>
-          <span className="inline-flex items-center gap-1" title="เชื้อเพลิง">
-            <Fuel size={14} className="text-brand-primary shrink-0"/> {fuelMap[car.fuel]}
-          </span>
+          {car.fuel && fuelMap[car.fuel as keyof typeof fuelMap] && (
+            <span className="inline-flex items-center gap-1" title="เชื้อเพลิง">
+              <Fuel size={14} className="text-brand-primary shrink-0"/> {fuelMap[car.fuel as keyof typeof fuelMap]}
+            </span>
+          )}
         </div>
 
         {/* Location & Price */}
