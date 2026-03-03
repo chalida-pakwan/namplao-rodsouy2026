@@ -54,65 +54,40 @@ function mapShopifyProductToCar(node: any): Car {
 
   const getMeta = (key: string) => {
       const field = node.metafields?.find((m: any) => m && m.key === key);
-      return field ? field.value : null;
+      let val = field ? field.value : null;
+      if (val && typeof val === 'string' && val.startsWith('[')) {
+          try {
+              const parsed = JSON.parse(val);
+              if (Array.isArray(parsed) && parsed.length > 0) {
+                  val = parsed[0];
+              }
+          } catch(e) {}
+      }
+      return val;
   };
   
   // Defaulting to 0 mileage if not found
   const mileageStr = getMeta('mileage');
-  const mileage = mileageStr ? parseInt(mileageStr.replace(/,/g, '')) : 0;
+  const mileage = mileageStr ? parseInt(String(mileageStr).replace(/,/g, '')) : 0;
   
-  // Transmission
-  const transVal = getMeta('transmission') || '';
-  let transmission = 'AT'; // default
-  
-  const transSearchStr = (transVal + ' ' + (node.tags?.join(' ') || '') + ' ' + node.title).toLowerCase();
-  
-  if (transSearchStr.includes('manual') || transSearchStr.includes(' mt ') || transSearchStr.includes('-mt') || transSearchStr.includes(' mt') || transSearchStr.includes('ธรรมดา')) {
+  // Transmission from strict backend object only
+  const transVal = String(getMeta('transmission') || '').trim();
+  let transmission = ''; 
+  if (transVal.includes('ธรรมดา') || transVal.toUpperCase() === 'MT' || transVal.toUpperCase() === 'MANUAL') {
       transmission = 'MT';
-  } else if (transSearchStr.includes(' AT ') || transSearchStr.includes('-at') || transSearchStr.includes(' at') || transSearchStr.includes('อัตโนมัติ') || transSearchStr.includes(' auto')) {
+  } else if (transVal.includes('ออโต้') || transVal.includes('อัตโนมัติ') || transVal.toUpperCase() === 'AT' || transVal.toUpperCase() === 'AUTO') {
       transmission = 'AT';
   }
 
-  // Fuel
-  let fuel = ''; 
-  const fVal = getMeta('fuel_type') || '';
-  const titleLower = node.title.toLowerCase();
-  const tagsLower = (node.tags?.join(' ') || '').toLowerCase();
-  // Combine for general searching
-  const searchStr = (fVal + ' ' + tagsLower + ' ' + titleLower).toLowerCase();
-
-  // 1. Priority: Check known car models that are almost exclusively Diesel (unless explicit Benzine)
-  const isDieselModel = [
-    'isuzu', 'd-max', 'mu-x', 
-    'hilux', 'revo', 'vigo', 'rocco', 
-    'ranger', 'raptor', 'everest',
-    'triton', 'pajero',
-    'navara', 'terra',
-    'colorado', 'trailblazer',
-    'bt-50',
-    'fortuner'
-  ].some(keyword => titleLower.includes(keyword) || tagsLower.includes(keyword));
-
-  // Check if it's explicitly Benzine (e.g. Hilux 2.7, Fortuner 2.7)
-  const isExplicitBenzine = 
-    titleLower.includes('2.7') || 
-    titleLower.includes('benzine') || 
-    titleLower.includes('เบนซิน') ||
-    tagsLower.includes('benzine') ||
-    tagsLower.includes('เบนซิน');
-
-  if (isDieselModel && !isExplicitBenzine) {
-      fuel = 'Diesel';
-  } 
-  // 2. Standard Detection from keywords
-  else if (searchStr.includes('diesel') || searchStr.includes('ดีเซล')) {
-    fuel = 'Diesel';
-  } else if (searchStr.includes('hybrid') || searchStr.includes('ไฮบริด') || searchStr.includes('phev')) {
-    fuel = 'Hybrid';
-  } else if (searchStr.includes('ev') || searchStr.includes('ไฟฟ้า') || searchStr.includes('electric')) {
-    fuel = 'EV';
-  } else if (searchStr.includes('benzine') || searchStr.includes('เบนซิน') || searchStr.includes('เบนซิล') || searchStr.includes('gasoline') || searchStr.includes('petrol') || searchStr.includes('gasohol') || searchStr.includes('แก๊สโซฮอล์')) {
-    fuel = 'Benzine';
+  // Fuel from strict backend object only
+  let fuelVal = String(getMeta('fuel') || getMeta('fuel_type') || '').trim();
+  let fuel = '';
+  if (fuelVal) {
+     if (fuelVal.includes('ดีเซล') || fuelVal.toLowerCase() === 'diesel') fuel = 'Diesel';
+     else if (fuelVal.includes('เบนซิน') || fuelVal.includes('เบนซิล') || fuelVal.toLowerCase() === 'benzine') fuel = 'Benzine';
+     else if (fuelVal.includes('ไฮบริด') || fuelVal.toLowerCase() === 'hybrid') fuel = 'Hybrid';
+     else if (fuelVal.includes('ไฟฟ้า') || fuelVal.toLowerCase() === 'ev') fuel = 'EV';
+     else fuel = fuelVal;
   }
 
   // Drivetrain
