@@ -427,10 +427,13 @@ export default function CreditCheckForm() {
                     <input
                       type="number"
                       className="input mt-1"
-                      value={age}
+                      value={age || ''}
                       min={18}
                       max={75}
-                      onChange={(e) => setAge(clampNumber(Number(e.target.value), 18, 75))}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setAge(val === '' ? 0 : Number(val));
+                      }}
                     />
                   </div>
                 </div>
@@ -567,16 +570,18 @@ export default function CreditCheckForm() {
                             <input
                               type="number"
                               className="input mt-1"
-                              value={workYears}
-                              min={0}
-                              max={60}
-                              onChange={(e) => setWorkYears(clampNumber(Number(e.target.value), 0, 60))}
-                            />
-                          </div>
-
-                          <div>
-                            <label className="text-sm font-bold text-slate-700">รายได้ต่อเดือน (บาท) *</label>
-                            <input
+                                value={workYears || ''}
+                                min={0}
+                                max={60}
+                                onChange={(e) => {
+                                  const val = e.target.value;
+                                  setWorkYears(val === '' ? 0 : Number(val));
+                                }}
+                              />
+                            </div>
+                            <div>
+                               <label className="text-sm font-bold text-slate-700">รายได้สุทธิต่อเดือน (บาท) *</label>
+                               <input
                               type="number"
                               className="input mt-1"
                               value={monthlyIncome}
