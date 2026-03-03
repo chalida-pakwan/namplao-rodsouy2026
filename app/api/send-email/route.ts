@@ -255,9 +255,14 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
+function getCurrentThaiDateTime() {
+  return new Date().toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' })
+}
+
 function buildCreditCheckMessage(body: CreditCheckPayload) {
   return `
 [ประเมินสินเชื่อ]
+วันที่ส่ง: ${getCurrentThaiDateTime()}
 --------------------------------
 ชื่อ: ${body.fullName || '-'}
 เบอร์โทร: ${body.phone || '-'}
@@ -299,6 +304,7 @@ ${body.assessment?.title || 'ยังไม่ได้ประเมิน'}
 function buildSellCarMessage(body: SellCarPayload) {
   return `
 [ขายรถ / ขอประเมินราคา]
+วันที่ส่ง: ${getCurrentThaiDateTime()}
 --------------------------------
 ชื่อ: ${body.fullName || '-'}
 เบอร์โทร: ${body.phone || '-'}
@@ -321,6 +327,7 @@ ${body.notes?.trim() ? body.notes.trim() : '-'}
 
 function buildContactMessage(body: ContactPayload) {
   return `
+วันที่ส่ง: ${getCurrentThaiDateTime()}
 [สอบถามทั่วไป]
 --------------------------------
 ชื่อ: ${body.fullName || '-'}
