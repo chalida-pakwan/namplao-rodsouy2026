@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ContactBar from "@/components/ContactBar";
 import HomeFeaturedCars from "@/components/HomeFeaturedCars";
+import DeliveryGallery from "@/components/DeliveryGallery";
 import {
   Phone,
   Car,
@@ -410,6 +411,16 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ─── Customer Deliveries (Testimonials / Gallery) ─── */}
+      <section className="container-responsive pb-12 sm:pb-16 mb-8 sm:mb-12">
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-brand-dark">ภาพความประทับใจส่งมอบรถ</h2>
+          <p className="text-slate-500 mt-2 text-sm">ส่วนหนึ่งของลูกค้าน้ำเปล่ารถสวย ที่ให้ความไว้วางใจออกรถกับเรา</p>
+        </div>
+        <DeliveryGallery />
+      </section>
+
     </div>
   );
 }
