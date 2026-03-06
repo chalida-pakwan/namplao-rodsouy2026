@@ -30,7 +30,7 @@ const contacts = [
     icon: Facebook,
     title: 'Facebook',
     value: 'น้ำเปล่ารถสวย',
-    href: 'https://www.facebook.com/namplaorodsouy',
+    href: 'https://www.facebook.com/chalidaonline.2020',
     color: 'bg-indigo-50 text-indigo-600',
   },
   {

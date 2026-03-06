@@ -70,7 +70,7 @@ export default function AboutPage() {
       closes: '18:00'
     },
     sameAs: [
-      'https://www.facebook.com/namplaorodsouy',
+      'https://www.facebook.com/chalidaonline.2020',
       'https://line.me/R/ti/p/@931prrnt'
     ]
   };
