@@ -26,6 +26,7 @@ type CreditCheckPayload = {
   age?: number
   province?: string
   occupation?: string
+  creditStatus?: 'good' | 'normal' | 'unknown' | 'no_history' | 'bad'
   workplaceName?: string
   jobPosition?: string
   workYears?: number
@@ -255,20 +256,16 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-function getCurrentThaiDateTime() {
-  return new Date().toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' })
-}
-
 function buildCreditCheckMessage(body: CreditCheckPayload) {
   return `
 [ประเมินสินเชื่อ]
-วันที่ส่ง: ${getCurrentThaiDateTime()}
 --------------------------------
 ชื่อ: ${body.fullName || '-'}
 เบอร์โทร: ${body.phone || '-'}
 อายุ: ${body.age ?? '-'} ปี
 เพศ: ${body.gender === 'male' ? 'ชาย' : body.gender === 'female' ? 'หญิง' : body.gender === 'other' ? 'อื่นๆ' : '-'}
 จังหวัด: ${body.province || '-'}
+ประวัติเครดิต: ${getCreditStatusLabel(body.creditStatus)}
 
 [ข้อมูลอาชีพ]
 อาชีพ: ${getOccupationLabel(body.occupation)}
@@ -304,7 +301,6 @@ ${body.assessment?.title || 'ยังไม่ได้ประเมิน'}
 function buildSellCarMessage(body: SellCarPayload) {
   return `
 [ขายรถ / ขอประเมินราคา]
-วันที่ส่ง: ${getCurrentThaiDateTime()}
 --------------------------------
 ชื่อ: ${body.fullName || '-'}
 เบอร์โทร: ${body.phone || '-'}
@@ -327,7 +323,6 @@ ${body.notes?.trim() ? body.notes.trim() : '-'}
 
 function buildContactMessage(body: ContactPayload) {
   return `
-วันที่ส่ง: ${getCurrentThaiDateTime()}
 [สอบถามทั่วไป]
 --------------------------------
 ชื่อ: ${body.fullName || '-'}
@@ -351,6 +346,18 @@ function buildSubject(formType: unknown, fromName: string) {
     default:
       return `[ประเมินสินเชื่อ] คุณ${name}`
   }
+}
+
+function getCreditStatusLabel(key?: string): string {
+  const map: Record<string, string> = {
+    good: 'ดีมาก (เพิ่งปิดงวด / ไม่เคยล่าช้า)',
+    normal: 'ปกติ (มีล่าช้าบ้าง แต่ไม่เกิน 30 วัน)',
+    no_history: 'ไม่มีประวัติ (ไม่เคยผ่อนอะไรเลย)',
+    bad: 'ติดแบล็คลิสต์ (ล่าช้าเกิน 90 วัน / คืนรถ)',
+    unknown: 'ไม่แน่ใจ',
+  }
+  if (!key) return '-'
+  return map[key] || key
 }
 
 function getOccupationLabel(key?: string): string {
