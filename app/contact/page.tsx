@@ -30,7 +30,7 @@ const contacts = [
     icon: Facebook,
     title: 'Facebook',
     value: 'น้ำเปล่ารถสวย',
-    href: 'https://www.facebook.com',
+    href: 'https://www.facebook.com/namplaorodsouy',
     color: 'bg-indigo-50 text-indigo-600',
   },
   {
@@ -87,35 +87,48 @@ export default function ContactPage() {
         <div>
           <h2 className="text-2xl font-black text-brand-dark mb-6">ช่องทางติดต่อ</h2>
           <div className="space-y-4">
-            {contacts.map((c, i) => (
-              <div key={i} className="card p-4 flex items-center gap-4">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${c.color}`}>
-                  <c.icon size={22}/>
-                </div>
-                <div className="flex-1">
-                  <p className="text-sm text-slate-500">{c.title}</p>
-                  {c.href ? (
-                    <a href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined}
-                      className="font-bold text-brand-dark hover:text-brand-blue transition-colors">
+            {contacts.map((c, i) => {
+              const Content = () => (
+                <div className="card p-4 flex items-center gap-4 hover:-translate-y-1 hover:shadow-md transition-all cursor-pointer">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${c.color} shrink-0`}>
+                    <c.icon size={22} />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm text-slate-500">{c.title}</p>
+                    <p className="font-bold text-brand-dark group-hover:text-brand-blue transition-colors">
                       {c.value}
-                    </a>
-                  ) : (
-                    <p className="font-bold text-brand-dark">{c.value}</p>
-                  )}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+
+              return c.href ? (
+                <a 
+                  key={i} 
+                  href={c.href} 
+                  target={c.href.startsWith('http') ? '_blank' : undefined}
+                  rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="block group"
+                >
+                  <Content />
+                </a>
+              ) : (
+                <div key={i} className="block group cursor-default">
+                  <Content />
+                </div>
+              );
+            })}
           </div>
 
           {/* Quick CTA */}
-          <div className="mt-6 grid grid-cols-2 gap-3">
+          <div className="mt-6 grid grid-cols-2 gap-3 relative z-10">
             <a href="https://line.me/R/ti/p/@931prrnt" target="_blank"
-              className="btn bg-green-500 text-white font-bold py-3 justify-center hover:bg-green-600">
-              <MessageCircle size={18}/> ทัก LINE
+              className="btn bg-green-500 text-white font-bold py-3 justify-center hover:bg-green-600 active:scale-95 transition-transform flex items-center">
+              <MessageCircle size={18} className="mr-1"/> ทัก LINE
             </a>
             <a href="tel:0947251267"
-              className="btn bg-brand-blue text-white font-bold py-3 justify-center hover:bg-brand-dark">
-              <Phone size={18}/> โทรเลย
+              className="btn bg-brand-blue text-white font-bold py-3 justify-center hover:bg-brand-dark active:scale-95 transition-transform flex items-center">
+              <Phone size={18} className="mr-1"/> โทรเลย
             </a>
           </div>
 
