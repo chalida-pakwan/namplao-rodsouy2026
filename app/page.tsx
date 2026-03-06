@@ -1,9 +1,15 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import ContactBar from "@/components/ContactBar";
 import HomeFeaturedCars from "@/components/HomeFeaturedCars";
-import DeliveryGallery from "@/components/DeliveryGallery";
+
+// โหลด DeliveryGallery แบบ Lazy load เพื่อลดขนาด JavaScript ในหน้าแรก
+const DeliveryGallery = dynamic(() => import("@/components/DeliveryGallery"), {
+  loading: () => <div className="animate-pulse bg-slate-100 rounded-xl h-[400px] w-full mt-4"></div>,
+  ssr: false, // สามารถปิด SSR ได้ถ้าไม่ได้ใช้ประโยชน์ด้าน SEO ของรูปภาพที่อยู่ด้านล่างสุด
+});
 import {
   Phone,
   Car,

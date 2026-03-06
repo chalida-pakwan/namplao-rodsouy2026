@@ -7,8 +7,8 @@ export default async function HomeFeaturedCars() {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
-      {featured.map((car) => (
-        <CarCard key={car.id} car={car} />
+      {featured.map((car, index) => (
+        <CarCard key={car.id} car={car} priority={index < 4} />
       ))}
       {featured.length === 0 && (
         <div className="col-span-full text-center py-12 bg-white rounded-lg">
