@@ -18,6 +18,7 @@
   ],
   "dependencies": {
     "@emailjs/nodejs": "^5.0.2",
+    "@modelcontextprotocol/server-puppeteer": "^2025.5.12",
     "clsx": "2.1.1",
     "lucide-react": "^0.452.0",
     "next": "14.2.5",
