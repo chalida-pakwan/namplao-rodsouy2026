@@ -7,6 +7,7 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react']
   },
   images: {
+    unoptimized: true,
     formats: ['image/webp'],
     remotePatterns: [
       { protocol: 'https', hostname: '**' }
